@@ -1,0 +1,80 @@
+@import "../../styles.scss";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  background: $black;
+  padding: 16px 24px;
+  font-size: 18px;
+  gap: 8px;
+  justify-items: center;
+//   position:fixed;
+//   bottom:0;
+  gap: 16px;
+
+  @include media("tablet") {
+    padding: 16px 48px;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: $gray;
+    gap: 12px;
+    justify-content: center;
+
+    @include media('mobile') {
+      flex-direction: row;
+      gap: 24px;
+    }
+
+    @include media('tablet') {
+      gap: 24px;
+    }
+
+    &__link {
+        text-align: center;
+    }
+  }
+
+  &__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+
+        &__link {
+            text-align: center;
+            text-decoration: none;
+            color: $gray;
+
+            &:hover {
+              color: white;
+            }
+        }
+    }
+
+    &__company {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        &__copyright {
+            color: $white;
+        }
+    }
+  }
+
+//   &__company {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//   }
+}
