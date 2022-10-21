@@ -29,7 +29,7 @@ function Header() {
   const { width, height } = useWindowDimensions();
 
   useEffect(() => {
-    if (width > 768) {
+    if (width >= 768) {
       setMenuIsOpen(false);
       setIsDesktop(true);
       return;

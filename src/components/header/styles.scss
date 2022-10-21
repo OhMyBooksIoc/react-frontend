@@ -16,25 +16,27 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     &__items {
       display: flex;
       flex-direction: column;
       font-size: 18px;
       padding-top: 16px;
+      gap: 8px;
 
       @include media("tablet") {
         flex-direction: row;
         padding-top: 0;
+        gap: 24px;
+        align-items: center;
       }
 
       &__item {
-        color: $white;
+        color: $gray;
         text-decoration: none;
-        padding: 8px;
-
-        @include media('tablet') {
-          padding: 8px 12px;
+        &:hover {
+          color: white;
         }
       }
 
@@ -46,10 +48,10 @@
         border-radius: 5px;
         text-align: center;
         width: max-content;
+        font-size: 14px;
 
-        @include media('tablet') {
+        @include media("tablet") {
           margin-top: 0;
-          margin-left: 24px;
         }
       }
     }
