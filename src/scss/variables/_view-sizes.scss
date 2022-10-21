@@ -1,0 +1,11 @@
+$tablet: 768px;
+$desktop: 1024px;
+$desktop-lg: 1280px;
+$desktop-wide: 1440px;
+
+$breakpoints: (
+  "tablet": $tablet,
+  "desktop": $desktop,
+  "desktop-lg": $desktop-lg,
+  "desktop-wide": $desktop-wide,
+);
