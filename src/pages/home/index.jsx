@@ -5,7 +5,7 @@ import Footer from "../../components/footer/index";
 function HomePage() {
   return (
     <>
-      <Header title="Header Home Page" color="#3477eb" />
+      <Header/>
       <h2>Contingut Home Page</h2>
       <Footer />
     </>

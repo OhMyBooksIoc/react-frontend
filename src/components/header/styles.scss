@@ -1,0 +1,57 @@
+@import "../../styles.scss";
+
+.header {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  background: $black;
+  padding: 16px 24px;
+  font-size: 24px;
+
+  @include media("tablet") {
+    padding: 16px 48px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      padding-top: 16px;
+
+      @include media("tablet") {
+        flex-direction: row;
+        padding-top: 0;
+      }
+
+      &__item {
+        color: $white;
+        text-decoration: none;
+        padding: 8px;
+
+        @include media('tablet') {
+          padding: 8px 12px;
+        }
+      }
+
+      &__button {
+        color: $black;
+        background: $white;
+        margin-top: 16px;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-align: center;
+        width: max-content;
+
+        @include media('tablet') {
+          margin-top: 0;
+          margin-left: 24px;
+        }
+      }
+    }
+  }
+}
