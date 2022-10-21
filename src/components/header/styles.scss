@@ -49,6 +49,7 @@
         text-align: center;
         width: max-content;
         font-size: 14px;
+        font-weight: bold;
 
         @include media("tablet") {
           margin-top: 0;

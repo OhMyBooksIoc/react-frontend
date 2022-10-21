@@ -1,0 +1,89 @@
+@import "../../styles.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__container {
+    flex-grow: 1;
+
+    &__head {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      background: #ffbf59;
+      height: 248px;
+      color: $black;
+      padding: 24px;
+
+      &__title {
+        font-size: 32px;
+        font-weight: 600;
+      }
+
+      &__subtitle {
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      &__button {
+        align-self: center;
+        background: black;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        width: max-content;
+        padding: 8px 16px;
+        border-radius: 5px;
+        margin-top: 8px;
+      }
+    }
+
+    &__content {
+      padding: 32px 24px;
+      text-align: center;
+
+      &__title {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0;
+        margin-bottom: 12px;
+      }
+
+      &__subtitle {
+        font-size: 16px;
+        font-weight: normal;
+        color: $gray-dark;
+        margin-bottom: 32px;
+        margin-top: 8px;
+      }
+
+      &__features {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        &__feature {
+          &__title {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-align: left;
+          }
+
+          &__description {
+            font-size: 16px;
+            text-align: left;
+            margin: 0 0 16px 0;
+          }
+
+          &__img {
+            width: 325px;
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}

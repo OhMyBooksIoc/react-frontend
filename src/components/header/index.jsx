@@ -42,7 +42,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <span>OhMyBooks</span>
+        <span>🕮 OhMyBooks</span>
         {isDesktop ? (
           <MenuItems />
         ) : (
