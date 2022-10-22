@@ -18,6 +18,11 @@
     justify-content: space-between;
     align-items: center;
 
+    &__title {
+      color: $white;
+      text-decoration: none;
+    }
+
     &__items {
       display: flex;
       flex-direction: column;
@@ -50,6 +55,7 @@
         width: max-content;
         font-size: 14px;
         font-weight: bold;
+        text-decoration: none;
 
         @include media("tablet") {
           margin-top: 0;
