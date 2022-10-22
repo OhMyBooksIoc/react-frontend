@@ -12,7 +12,7 @@ function HomePage() {
             ¿Te gustan la lectura? Únete a OhMyBooks
           </h2>
           <a href="/registro" className="home__container__head__button">
-            regístrare
+            Regístrare
           </a>
         </div>
         <div className="home__container__content">

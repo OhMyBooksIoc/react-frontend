@@ -18,7 +18,7 @@ function MenuItems() {
       <a href="/registro" className="header__container__items__item">
         Registro
       </a>
-      <a href="/login" className="header__container__items__button">INICIA SESIÓN</a>
+      <a href="/login" className="header__container__items__button">Inicia sesión</a>
     </div>
   );
 }
@@ -36,8 +36,6 @@ function Header() {
     }
     setIsDesktop(false);
   }, [width]);
-
-  console.log(width, height);
 
   return (
     <header className="header">
