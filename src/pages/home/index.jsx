@@ -9,7 +9,7 @@ function HomePage() {
       <div className="home__container">
         <div className="home__container__head">
           <h1 className="home__container__head__title">
-            Organiza tu bibliotca y comparte tus libros
+            Organiza tu biblioteca y comparte tus libros
           </h1>
           <h2 className="home__container__head__subtitle">
             ¿Te gustan la lectura? Únete a OhMyBooks
@@ -28,75 +28,120 @@ function HomePage() {
           </h3>
           <div className="home__container__content__features">
             <div className="home__container__content__features__feature">
-              <h4 className="home__container__content__features__feature__title">
-                Crea tu colección en un momento 1
-              </h4>
-              <p className="home__container__content__features__feature__description">
-                En Whakoom puedes encontrar cientos de miles de fichas de cómics
-                en más de 30 idiomas y con toda la información que necesitas.
-                Seguro que los cómics que tienes ya están aquí, pero si no
-                encuentras algo, puedes crearlo tú mismo desde la web. ¡Whakoom
-                lo hacemos entre todos!
-              </p>
+              <div className="home__container__content__features__feature__container">
+                <h4 className="home__container__content__features__feature__container__title">
+                  Lorem Ipsum 1
+                </h4>
+                <p className="home__container__content__features__feature__container__description">
+                  Lorem Ipsum es simplemente el texto de relleno de las
+                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                  relleno estándar de las industrias desde el año 1500, cuando
+                  un impresor (N. del T. persona que se dedica a la imprenta)
+                  desconocido usó una galería de textos y los mezcló de tal
+                  manera que logró hacer un libro de textos especimen
+                </p>
+              </div>
               <img
                 className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200"
+                src="https://via.placeholder.com/325x200?text=OhMyBooks"
+              />
+            </div>
+            <div className="home__container__content__features__feature home__container__content__features__feature--reverse">
+              <div className="home__container__content__features__feature__container">
+                <h4 className="home__container__content__features__feature__container__title">
+                  Lorem Ipsum 2
+                </h4>
+                <p className="home__container__content__features__feature__container__description">
+                  Lorem Ipsum es simplemente el texto de relleno de las
+                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                  relleno estándar de las industrias desde el año 1500, cuando
+                  un impresor (N. del T. persona que se dedica a la imprenta)
+                  desconocido usó una galería de textos y los mezcló de tal
+                  manera que logró hacer un libro de textos especimen
+                </p>
+              </div>
+              <img
+                className="home__container__content__features__feature__img"
+                src="https://via.placeholder.com/325x200?text=OhMyBooks"
               />
             </div>
             <div className="home__container__content__features__feature">
-              <h4 className="home__container__content__features__feature__title">
-                Crea tu colección en un momento 2
-              </h4>
-              <p className="home__container__content__features__feature__description">
-                En Whakoom puedes encontrar cientos de miles de fichas de cómics
-                en más de 30 idiomas y con toda la información que necesitas.
-                Seguro que los cómics que tienes ya están aquí, pero si no
-                encuentras algo, puedes crearlo tú mismo desde la web. ¡Whakoom
-                lo hacemos entre todos!
-              </p>
+              <div className="home__container__content__features__feature__container">
+                <h4 className="home__container__content__features__feature__container__title">
+                  Lorem Ipsum 3
+                </h4>
+                <p className="home__container__content__features__feature__container__description">
+                  Lorem Ipsum es simplemente el texto de relleno de las
+                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                  relleno estándar de las industrias desde el año 1500, cuando
+                  un impresor (N. del T. persona que se dedica a la imprenta)
+                  desconocido usó una galería de textos y los mezcló de tal
+                  manera que logró hacer un libro de textos especimen
+                </p>
+              </div>
               <img
                 className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200"
+                src="https://via.placeholder.com/325x200?text=OhMyBooks"
               />
             </div>
-            <div className="home__container__content__features__feature">
-              <h4 className="home__container__content__features__feature__title">
-                Crea tu colección en un momento 3
-              </h4>
-              <p className="home__container__content__features__feature__description">
-                En Whakoom puedes encontrar cientos de miles de fichas de cómics
-                en más de 30 idiomas y con toda la información que necesitas.
-                Seguro que los cómics que tienes ya están aquí, pero si no
-                encuentras algo, puedes crearlo tú mismo desde la web. ¡Whakoom
-                lo hacemos entre todos!
-              </p>
+            <div className="home__container__content__features__feature home__container__content__features__feature--reverse">
+              <div className="home__container__content__features__feature__container">
+                <h4 className="home__container__content__features__feature__container__title">
+                  Lorem Ipsum 4
+                </h4>
+                <p className="home__container__content__features__feature__container__description">
+                  Lorem Ipsum es simplemente el texto de relleno de las
+                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                  relleno estándar de las industrias desde el año 1500, cuando
+                  un impresor (N. del T. persona que se dedica a la imprenta)
+                  desconocido usó una galería de textos y los mezcló de tal
+                  manera que logró hacer un libro de textos especimen
+                </p>
+              </div>
               <img
                 className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200"
-              />
-            </div>
-            <div className="home__container__content__features__feature">
-              <h4 className="home__container__content__features__feature__title">
-                Crea tu colección en un momento 4
-              </h4>
-              <p className="home__container__content__features__feature__description">
-                En Whakoom puedes encontrar cientos de miles de fichas de cómics
-                en más de 30 idiomas y con toda la información que necesitas.
-                Seguro que los cómics que tienes ya están aquí, pero si no
-                encuentras algo, puedes crearlo tú mismo desde la web. ¡Whakoom
-                lo hacemos entre todos!
-              </p>
-              <img
-                className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200"
+                src="https://via.placeholder.com/325x200?text=OhMyBooks"
               />
             </div>
           </div>
           <div className="home__container__content__stats">
-          <div className="home__container__content__stats_stat"></div>
-          <div className="home__container__content__stats_stat"></div>
-          <div className="home__container__content__stats_stat"></div>
-          <div className="home__container__content__stats_stat"></div>
+            <h2 className="home__container__content__stats__title">
+              Datos de interés
+            </h2>
+            <div className="home__container__content__stats__list">
+              <div className="home__container__content__stats__list__stat">
+                <span className="home__container__content__stats__list__stat__value">
+                  0
+                </span>
+                <span className="home__container__content__stats__list__stat__title">
+                  Total Usuarios
+                </span>
+              </div>
+              <div className="home__container__content__stats__list__stat">
+                <span className="home__container__content__stats__list__stat__value">
+                  0
+                </span>
+                <span className="home__container__content__stats__list__stat__title">
+                  Libros publicados
+                </span>
+              </div>
+              <div className="home__container__content__stats__list__stat">
+                <span className="home__container__content__stats__list__stat__value">
+                  0
+                </span>
+                <span className="home__container__content__stats__list__stat__title">
+                  Libros leídos
+                </span>
+              </div>
+              <div className="home__container__content__stats__list__stat">
+                <span className="home__container__content__stats__list__stat__value">
+                  0
+                </span>
+                <span className="home__container__content__stats__list__stat__title">
+                  Libros en venta
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
