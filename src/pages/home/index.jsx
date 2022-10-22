@@ -1,11 +1,8 @@
-import "./styles.scss";
-import Header from "../../components/header/index";
-import Footer from "../../components/footer/index";
+import "./styles.scss"
 
 function HomePage() {
   return (
     <div className="home">
-      <Header />
       <div className="home__container">
         <div className="home__container__head">
           <h1 className="home__container__head__title">
@@ -145,7 +142,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

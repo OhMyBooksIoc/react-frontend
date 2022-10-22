@@ -18,7 +18,7 @@ function MenuItems() {
       <a href="/registro" className="header__container__items__item">
         Registro
       </a>
-      <a className="header__container__items__button">INICIA SESIÓN</a>
+      <a href="/login" className="header__container__items__button">INICIA SESIÓN</a>
     </div>
   );
 }
@@ -42,7 +42,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <span>🕮 OhMyBooks</span>
+        <a className="header__container__title" href="/">🕮 OhMyBooks</a>
         {isDesktop ? (
           <MenuItems />
         ) : (
