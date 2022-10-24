@@ -49,6 +49,11 @@
         padding: 64px 24px;
       }
 
+      @include media("desktop") {
+        width: 960px;
+        margin: auto;
+      }
+
       &__title {
         font-size: 22px;
         font-weight: 600;
@@ -114,6 +119,12 @@
       }
 
       &__stats {
+        @include media("tablet") {
+          width: 680px;
+          margin: auto;
+        }
+
+
         &__title {
           font-size: 22px;
           font-weight: 600;
@@ -133,10 +144,10 @@
           &__stat {
             display: flex;
             flex-direction: column;
-            background: $gray;
+            background: #ffbf59;
             padding: 24px 16px;
             border-radius: 10px;
-            color: white;
+            color: $black;
             &__value {
               font-weight: bold;
               font-size: 30px;

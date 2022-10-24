@@ -10,7 +10,6 @@ $header-height: 64px;
   background: $black;
   padding: 16px 24px;
   font-size: 24px;
-  height: $header-height;
 
   @include media("tablet") {
     padding: 16px 48px;
@@ -77,6 +76,7 @@ $header-height: 64px;
       top: $header-height;
       background-color: $black;
       padding: 0 24px 16px 24px;
+      z-index: 100;
     }
   }
 }
