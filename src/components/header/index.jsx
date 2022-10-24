@@ -51,7 +51,7 @@ function Header() {
         )}
       </div>
       {menuIsOpen && !isDesktop ? (
-        <div className="header__mobile">
+        <div className={`header__mobile ${menuIsOpen ? 'header__mobile--open' : ''}`}>
           <MenuItems />
         </div>
       ) : null}

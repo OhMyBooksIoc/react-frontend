@@ -1,6 +1,9 @@
 @import "../../styles.scss";
 
+$header-height: 64px;
+
 .header {
+  position: relative;
   display: flex;
   flex-direction: column;
   color: $white;
@@ -40,6 +43,7 @@
       &__item {
         color: $gray;
         text-decoration: none;
+
         &:hover {
           color: white;
         }
@@ -61,6 +65,18 @@
           margin-top: 0;
         }
       }
+    }
+  }
+
+  &__mobile {
+    &--open {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: $header-height;
+      background-color: $black;
+      padding: 0 24px 16px 24px;
+      z-index: 100;
     }
   }
 }
