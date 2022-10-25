@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import HomePage from "./pages/home/index";
 import LoginPage from "./pages/login/index";
 import RegisterPage from "./pages/register/index";
+import MiCuentaPage from "./pages/my-account/index";
 
 import "./app.scss";
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/registro",
     element: <RegisterPage />,
+  },
+  {
+    path: "/mi-cuenta",
+    element: <MiCuentaPage />,
   }
 ]);
 

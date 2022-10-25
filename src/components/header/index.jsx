@@ -6,7 +6,20 @@ import useWindowDimensions from "../../hooks/useWindowSize";
 
 import "./styles.scss";
 
+const isAuthenticated = !!(localStorage.getItem("isAuthenticated") || false);
+
 function MenuItems() {
+  const logout = () => {
+     if (isAuthenticated) {
+      localStorage.clear();
+      if (window.location.href.indexOf("mi-cuenta") > -1) {
+        window.location.href = "/";
+        return;
+      }
+      window.reload();
+     }
+  };
+
   return (
     <div className="header__container__items">
       <a href="/" className="header__container__items__item">
@@ -15,10 +28,15 @@ function MenuItems() {
       <a href="/ohmybooks" className="header__container__items__item">
         Qué es OhMyBooks?
       </a>
-      <a href="/registro" className="header__container__items__item">
-        Registro
+      {!isAuthenticated ? (
+        <a href="/registro" className="header__container__items__item">
+          Registro
+        </a>
+      ) : null}
+
+      <a href="/login" className="header__container__items__button" onClick={logout}>
+        {!isAuthenticated ? "Inicia sesión" : "Cerrar sessión"}
       </a>
-      <a href="/login" className="header__container__items__button">Inicia sesión</a>
     </div>
   );
 }
@@ -40,7 +58,9 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <a className="header__container__title" href="/">🕮 OhMyBooks</a>
+        <a className="header__container__title" href="/">
+          🕮 OhMyBooks
+        </a>
         {isDesktop ? (
           <MenuItems />
         ) : (
@@ -51,7 +71,11 @@ function Header() {
         )}
       </div>
       {menuIsOpen && !isDesktop ? (
-        <div className={`header__mobile ${menuIsOpen ? 'header__mobile--open' : ''}`}>
+        <div
+          className={`header__mobile ${
+            menuIsOpen ? "header__mobile--open" : ""
+          }`}
+        >
           <MenuItems />
         </div>
       ) : null}

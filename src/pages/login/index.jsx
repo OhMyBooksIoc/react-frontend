@@ -1,6 +1,39 @@
+import { useForm } from "react-hook-form";
+
 import "./styles.scss";
 
 function LoginPage() {
+
+  const {
+    register,
+    handleSubmit,
+  } = useForm({
+    mode: "onTouched",
+  });
+
+  const onSubmit = async ({ email, password }) => {
+    const body = {
+      email,
+      password,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+
+    const response = await fetch('http://localhost:8080/user/login', requestOptions);
+    const { status, user } = await response.json();
+
+    if (status === "200 OK") {
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('isAuthenticated', true);
+      window.location.href = "/mi-cuenta";
+    }
+  };
+
+
   return (
     <div className="login">
       <div className="login__header">
@@ -8,7 +41,7 @@ function LoginPage() {
         <span className="login__header__subtitle">Bienvenido a OhMyBooks!</span>
       </div>
       <div className="login__content">
-        <form className="login__content__form">
+        <form className="login__content__form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login__content__form__item">
             <label
               className="login__content__form__item__label"
@@ -23,6 +56,7 @@ function LoginPage() {
               type="email"
               placeholder="Correo electrónico"
               required
+              {...register("email", { required: true })}
             />
           </div>
           <div className="login__content__form__item">
@@ -39,6 +73,7 @@ function LoginPage() {
               id="password"
               type="password"
               required
+              {...register("password", { required: true })}
             />
           </div>
           <a
