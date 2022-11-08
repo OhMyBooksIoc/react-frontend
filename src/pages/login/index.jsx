@@ -29,7 +29,7 @@ function LoginPage() {
     if (status === "200 OK") {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('isAuthenticated', true);
-      window.location.href = "/mi-cuenta";
+      window.location.href = "/my-account";
     }
   };
 
@@ -95,7 +95,7 @@ function LoginPage() {
           <span>¿Aún no tienes cuenta?</span>
           <a
             className="login__content__register__link"
-            href="/registro"
+            href="/register"
             tabindex="6"
           >
             Regístrate

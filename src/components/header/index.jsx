@@ -25,18 +25,15 @@ function MenuItems() {
       <a href="/" className="header__container__items__item">
         Home
       </a>
-      <a href="/ohmybooks" className="header__container__items__item">
-        Qué es OhMyBooks?
-      </a>
       {!isAuthenticated ? (
-        <a href="/registro" className="header__container__items__item">
+        <a href="/register" className="header__container__items__item">
           Registro
         </a>
       ) : null}
 
       <a href="/login" className="header__container__items__button" onClick={logout}>
         {!isAuthenticated ? "Inicia sesión" : "Cerrar sessión"}
-      </a>
+      </a>     
     </div>
   );
 }

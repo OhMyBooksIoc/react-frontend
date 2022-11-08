@@ -11,7 +11,7 @@ function HomePage() {
           <h2 className="home__container__head__subtitle">
             ¿Te gustan la lectura? Únete a OhMyBooks
           </h2>
-          <a href="/registro" className="home__container__head__button">
+          <a href="/register" className="home__container__head__button">
             Regístrare
           </a>
         </div>
