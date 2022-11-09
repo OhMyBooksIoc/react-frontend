@@ -1,21 +1,56 @@
 @import "../../styles.scss";
 
-.login {
+.container {
   display: flex;
   flex-direction: column;
-  padding: 48px;
-  gap: 24px;
+  background: $white;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+
+  @include media("desktop") {
+    background: $yellow;
+  }
+}
+
+.login {
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 60px;
+  background: $white;
+  justify-content: center;
+  border-radius: 6px;
 
   @include media("mobile") {
-    width: 360px;
+    max-width: 444px;
     margin: auto;
+  }
+
+  @include media("desktop") {
+    padding: 42px 100px;
   }
 
   &__header {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    text-align: center;
+
+    &__pretitle {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 21px;
+      font-family: $poppins;
+      color: $gray-dark;
+    }
+
+    &__title {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 33px;
+      color: $black;
+      font-family: $poppins;
+      margin-bottom: 26px;
+    }
   }
 
   &__content {
@@ -33,12 +68,17 @@
         gap: 4px;
 
         &__label {
-          font-weight: bold;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+          font-family: $poppins;
+          color: $black;
+          margin-bottom: 4px;
         }
 
         &__input {
           width: 100%;
-          border: 1px solid $gray;
+          border: 1px solid $ligth-gray;
           color: $black;
           font-size: 16px;
           font-weight: 400;
@@ -46,36 +86,66 @@
           padding: 12px 16px;
           transform: scale(0.875);
           transform-origin: left center;
+          border-radius: 6px;
+          font-family: $poppins;
         }
       }
 
       &__recovery-pwd {
-        color: $gray-dark;
+        text-align: center;
+        margin-top: 16px;
+        color: $gray;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        font-family: $lora;
+
+        &:hover {
+          color: $black;
+        }
       }
 
       &__button {
-        margin-top: 12px;
-        margin-bottom: 20px;
+        margin-top: 16px;
         align-self: center;
-        background: $black;
+        background: $yellow;
         color: $white;
-        text-decoration: none;
-        width: max-content;
         padding: 12px 32px;
-        border-radius: 5px;
-        font-size: 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
         border: none;
+        font-family: $poppins;
+        text-transform: uppercase;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+          rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+          &:hover {
+            background: $yellow-dark;
+            cursor: pointer;
+          }
       }
     }
 
     &__register {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 4px;
+      text-align: center;
+      display: inline;
+      margin-top: 48px;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 17px;
+      font-family: $lora;
+      color: $black;
 
       &__link {
-        color: $gray-dark;
+        padding-left: 6px;
+        color: $gray;
+
+        &:hover {
+          color: $black;
+        }
       }
     }
   }

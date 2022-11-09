@@ -23,11 +23,11 @@ function MenuItems() {
   return (
     <div className="header__container__items">
       <a href="/" className="header__container__items__item">
-        Home
+       Inici
       </a>
       {!isAuthenticated ? (
         <a href="/register" className="header__container__items__item">
-          Registro
+         Registre
         </a>
       ) : null}
 
