@@ -1,18 +1,18 @@
 @import "../../styles.scss";
 
-$header-height: 64px;
+$header-height: 56px;
 
 .header {
   position: relative;
   display: flex;
   flex-direction: column;
   color: $white;
-  background: $black;
+  background: $light-blue;
   padding: 16px 24px;
   font-size: 24px;
 
   @include media("tablet") {
-    padding: 16px 48px;
+    padding: 16px 32px;
   }
 
   &__container {
@@ -21,17 +21,23 @@ $header-height: 64px;
     justify-content: space-between;
     align-items: center;
 
-    &__title {
-      color: $white;
-      text-decoration: none;
+    &__logo {
+      display: flex;
+      align-items: center;
+      width: 150px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
 
     &__items {
       display: flex;
       flex-direction: column;
-      font-size: 18px;
-      padding-top: 16px;
+      font-size: 16px;
       gap: 8px;
+      font-family: $lora;
 
       @include media("tablet") {
         flex-direction: row;
@@ -41,25 +47,27 @@ $header-height: 64px;
       }
 
       &__item {
-        color: $gray;
+        color: $white;
         text-decoration: none;
 
         &:hover {
-          color: white;
+          color: $black;
         }
       }
 
       &__button {
         align-self: center;
-        background: $white;
-        color: $black;
+        background: $dark-blue;
+        color: $white;
         text-decoration: none;
+        text-transform: uppercase;
         width: max-content;
-        padding: 12px 32px;
+        padding: 9px 18px;
         border-radius: 5px;
-        font-size: 18px;
+        font-size: 16px;
         border: none;
         font-weight: bold;
+        font-family: $poppins;
 
         @include media("tablet") {
           margin-top: 0;
@@ -74,8 +82,8 @@ $header-height: 64px;
       right: 0;
       left: 0;
       top: $header-height;
-      background-color: $black;
-      padding: 0 24px 16px 24px;
+      background-color: $light-blue;
+      padding: 16px 24px 16px 24px;
       z-index: 100;
     }
   }

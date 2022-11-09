@@ -10,14 +10,14 @@ const isAuthenticated = !!(localStorage.getItem("isAuthenticated") || false);
 
 function MenuItems() {
   const logout = () => {
-     if (isAuthenticated) {
+    if (isAuthenticated) {
       localStorage.clear();
       if (window.location.href.indexOf("mi-cuenta") > -1) {
         window.location.href = "/";
         return;
       }
       window.reload();
-     }
+    }
   };
 
   return (
@@ -31,9 +31,13 @@ function MenuItems() {
         </a>
       ) : null}
 
-      <a href="/login" className="header__container__items__button" onClick={logout}>
-        {!isAuthenticated ? "Inicia sesión" : "Cerrar sessión"}
-      </a>     
+      <a
+        href="/login"
+        className="header__container__items__button"
+        onClick={logout}
+      >
+        {!isAuthenticated ? "Inicia sessió" : "Tancar sessión"}
+      </a>
     </div>
   );
 }
@@ -55,8 +59,8 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <a className="header__container__title" href="/">
-          🕮 OhMyBooks
+        <a className="header__container__logo" href="/">
+          <img src="./images/logo.png" />
         </a>
         {isDesktop ? (
           <MenuItems />

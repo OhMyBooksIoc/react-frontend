@@ -1,20 +1,21 @@
 @import "../../styles.scss";
 
 .footer {
+  height: 168px;
   display: flex;
   flex-direction: column;
   color: $white;
-  background: $black;
+  background: $dark-blue;
   padding: 16px 24px;
   font-size: 18px;
   gap: 8px;
   justify-items: center;
   //   position:fixed;
   //   bottom:0;
-  gap: 16px;
+  gap: 24px;
 
   @include media("tablet") {
-    padding: 16px 48px;
+    padding: 16px 32px;
   }
 
   &__links {
@@ -22,7 +23,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     color: $gray;
-    gap: 12px;
+    gap: 2px;
     justify-content: center;
 
     @include media("mobile") {
@@ -48,15 +49,18 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
 
       &__link {
         text-align: center;
         text-decoration: none;
-        color: $gray;
+        color: $white;
+        font-size: 16px;
+        line-height: 26px;
+        font-family: $lora;
 
         &:hover {
-          color: white;
+          color: $gray;
         }
       }
     }
@@ -69,6 +73,9 @@
       &__copyright {
         font-size: 16px;
         color: $white;
+        font-size: 18px;
+        line-height: 26px;
+        font-family: $poppins;
       }
     }
   }
