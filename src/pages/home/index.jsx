@@ -7,7 +7,7 @@ function HomePage() {
     <div className="home">
       <div className="home__container">
         <Hero>
-          <a href="/registro" className="home__container__head__button">
+          <a href="/register" className="home__container__head__button">
             Registra’t
           </a>
         </Hero>

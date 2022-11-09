@@ -7,7 +7,11 @@ import Footer from "./components/footer";
 import HomePage from "./pages/home/index";
 import LoginPage from "./pages/login/index";
 import RegisterPage from "./pages/register/index";
-import MiCuentaPage from "./pages/my-account/index";
+import MyAccountPage from "./pages/my-account/index";
+import TermsOfUsePage from "./pages/terms-of-use";
+import PrivacyPolicyPage from "./pages/privacy-policy";
+import CookiesPage from "./pages/cookies";
+import AboutUsPage from "./pages/about-us";
 
 import "./app.scss";
 
@@ -21,12 +25,29 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/registro",
+    path: "/register",
     element: <RegisterPage />,
   },
   {
-    path: "/mi-cuenta",
-    element: <MiCuentaPage />,
+    path: "/my-account",
+    element: <MyAccountPage />,
+  },
+  
+  {
+    path: "/terms-of-use",
+    element: <TermsOfUsePage />
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicyPage />
+  },
+  {
+    path: "/cookies",
+    element: <CookiesPage />
+  },
+  {
+    path: "/about-us",
+    element: <AboutUsPage />
   }
 ]);
 
