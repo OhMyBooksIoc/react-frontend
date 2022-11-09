@@ -15,7 +15,7 @@
   gap: 24px;
 
   @include media("tablet") {
-    padding: 16px 48px;
+    padding: 16px 32px;
   }
 
   &__links {
@@ -55,8 +55,9 @@
         text-align: center;
         text-decoration: none;
         color: $white;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 26px;
+        font-family: $lora;
 
         &:hover {
           color: $gray;
@@ -74,6 +75,7 @@
         color: $white;
         font-size: 18px;
         line-height: 26px;
+        font-family: $poppins;
       }
     }
   }
