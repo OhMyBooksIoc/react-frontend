@@ -1,146 +1,123 @@
-import "./styles.scss"
+import Hero from "../../components/hero";
+
+import "./styles.scss";
 
 function HomePage() {
   return (
     <div className="home">
       <div className="home__container">
-        <div className="home__container__head">
-          <h1 className="home__container__head__title">
-            Organiza tu biblioteca y comparte tus libros
-          </h1>
-          <h2 className="home__container__head__subtitle">
-            ¿Te gustan la lectura? Únete a OhMyBooks
-          </h2>
+        <Hero>
           <a href="/registro" className="home__container__head__button">
-            Regístrare
+            Registra’t
           </a>
-        </div>
-        <div className="home__container__content">
-          <h2 className="home__container__content__title">
-            Digitalizar tu libreria por fin es fácil
+        </Hero>
+
+        <div className="home__container__head">
+          <h2 className="home__container__head__pre-title">
+            La teva comunitat de lectors
           </h2>
-          <h3 className="home__container__content__subtitle">
-            Mantener tu libreria organizada y a tus amigos informados ya no sera
-            complejo, con OhMyBooks puedes hacerlo de la manera fácil.
+          <h1 className="home__container__head__title">
+            Organitza la teva biblioteca i comparteix els teus llibres
+          </h1>
+          <h3 className="home__container__head__subtitle">
+            T’agrada la lectura? Uneix-te a OhMyBooks
           </h3>
-          <div className="home__container__content__features">
-            <div className="home__container__content__features__feature">
-              <div className="home__container__content__features__feature__container">
-                <h4 className="home__container__content__features__feature__container__title">
-                  Lorem Ipsum 1
-                </h4>
-                <p className="home__container__content__features__feature__container__description">
-                  Lorem Ipsum es simplemente el texto de relleno de las
-                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                  relleno estándar de las industrias desde el año 1500, cuando
-                  un impresor (N. del T. persona que se dedica a la imprenta)
-                  desconocido usó una galería de textos y los mezcló de tal
-                  manera que logró hacer un libro de textos especimen
-                </p>
+        </div>
+        <div style={{ backgroundColor: "#F0C260" }}>
+          <div className="home__container__content">
+            <div className="home__container__content__features">
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                  La teva col·lecció
+                </div>
+                <div className="home__container__content__features__card__description">
+                  Descobreix una forma de llistar i visualitzar la teva
+                  col·lecció en un mateix lloc, cercant i afegint llibres
+                  senzilla i pràcticament.
+                </div>
               </div>
-              <img
-                className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200?text=OhMyBooks"
-              />
-            </div>
-            <div className="home__container__content__features__feature home__container__content__features__feature--reverse">
-              <div className="home__container__content__features__feature__container">
-                <h4 className="home__container__content__features__feature__container__title">
-                  Lorem Ipsum 2
-                </h4>
-                <p className="home__container__content__features__feature__container__description">
-                  Lorem Ipsum es simplemente el texto de relleno de las
-                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                  relleno estándar de las industrias desde el año 1500, cuando
-                  un impresor (N. del T. persona que se dedica a la imprenta)
-                  desconocido usó una galería de textos y los mezcló de tal
-                  manera que logró hacer un libro de textos especimen
-                </p>
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                Organitza la teva col·lecció
+                </div>
+                <div className="home__container__content__features__card__description">
+                Disposaràs d’una llista de llibres pròpia, amb condicions i filtres que t’ajudaran a organitzar la teva col·lecció d’una manera eficaç i intuïtiva.
+                </div>
               </div>
-              <img
-                className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200?text=OhMyBooks"
-              />
-            </div>
-            <div className="home__container__content__features__feature">
-              <div className="home__container__content__features__feature__container">
-                <h4 className="home__container__content__features__feature__container__title">
-                  Lorem Ipsum 3
-                </h4>
-                <p className="home__container__content__features__feature__container__description">
-                  Lorem Ipsum es simplemente el texto de relleno de las
-                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                  relleno estándar de las industrias desde el año 1500, cuando
-                  un impresor (N. del T. persona que se dedica a la imprenta)
-                  desconocido usó una galería de textos y los mezcló de tal
-                  manera que logró hacer un libro de textos especimen
-                </p>
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                Llegit o no llegit?
+                </div>
+                <div className="home__container__content__features__card__description">
+                ¿Se t’acumulen els exemplars? Necessites una bona organització. Marca tots els teus llibres pendents en una llista de lectura i presumeix de les lectures que has completat. ¡Mai has tingut un millor seguiment de les teves lectures!
+                </div>
               </div>
-              <img
-                className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200?text=OhMyBooks"
-              />
-            </div>
-            <div className="home__container__content__features__feature home__container__content__features__feature--reverse">
-              <div className="home__container__content__features__feature__container">
-                <h4 className="home__container__content__features__feature__container__title">
-                  Lorem Ipsum 4
-                </h4>
-                <p className="home__container__content__features__feature__container__description">
-                  Lorem Ipsum es simplemente el texto de relleno de las
-                  imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                  relleno estándar de las industrias desde el año 1500, cuando
-                  un impresor (N. del T. persona que se dedica a la imprenta)
-                  desconocido usó una galería de textos y los mezcló de tal
-                  manera que logró hacer un libro de textos especimen
-                </p>
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                Comparteix ressenyes
+                </div>
+                <div className="home__container__content__features__card__description">
+                ¿Se t’acumulen els exemplars? Necessites una bona organització. Marca tots els teus llibres pendents en una llista de lectura i presumeix de les lectures que has completat. ¡Mai has tingut un millor seguiment de les teves lectures!
+                </div>
               </div>
-              <img
-                className="home__container__content__features__feature__img"
-                src="https://via.placeholder.com/325x200?text=OhMyBooks"
-              />
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                Tendències de lectura
+                </div>
+                <div className="home__container__content__features__card__description">
+                Esbrina què estan llegint altres usuaris. No només trobaràs els títols que més es llegeixen, també coneixeràs els gèneres literaris que prefereixen els demés.
+                </div>
+              </div>
+              <div className="home__container__content__features__card">
+                <div className="home__container__content__features__card__title">
+                Llista de desitjats
+                </div>
+                <div className="home__container__content__features__card__description">
+                Tens molt clar els títols que desitges llegir, però sovint no es possible aconseguir-los tots. Amb la llista de desitjats, els tindràs sempre presents i podràs planificar la seva adquisició i lectura.
+                </div>
+              </div>
             </div>
           </div>
-          <div className="home__container__content__stats">
-            <h2 className="home__container__content__stats__title">
-              Datos de interés
-            </h2>
-            <div className="home__container__content__stats__list">
-              <div className="home__container__content__stats__list__stat">
-                <span className="home__container__content__stats__list__stat__value">
-                  0
-                </span>
-                <span className="home__container__content__stats__list__stat__title">
+        </div>
+        <div className="home__container__stats">
+            <h2 className="home__container__stats__title">Dades d’interès</h2>
+            <div className="home__container__stats__list">
+              <div className="home__container__stats__list__stat">
+                <span className="home__container__stats__list__stat__title">
                   Total Usuarios
                 </span>
-              </div>
-              <div className="home__container__content__stats__list__stat">
-                <span className="home__container__content__stats__list__stat__value">
+                <span className="home__container__stats__list__stat__value">
                   0
                 </span>
-                <span className="home__container__content__stats__list__stat__title">
+              </div>
+              <div className="home__container__stats__list__stat">
+                <span className="home__container__stats__list__stat__title">
                   Libros publicados
                 </span>
-              </div>
-              <div className="home__container__content__stats__list__stat">
-                <span className="home__container__content__stats__list__stat__value">
+                <span className="home__container__stats__list__stat__value">
                   0
                 </span>
-                <span className="home__container__content__stats__list__stat__title">
+              </div>
+              <div className="home__container__stats__list__stat">
+                <span className="home__container__stats__list__stat__title">
                   Libros leídos
                 </span>
-              </div>
-              <div className="home__container__content__stats__list__stat">
-                <span className="home__container__content__stats__list__stat__value">
+                <span className="home__container__stats__list__stat__value">
                   0
                 </span>
-                <span className="home__container__content__stats__list__stat__title">
+              </div>
+              <div className="home__container__stats__list__stat">
+                <span className="home__container__stats__list__stat__title">
                   Libros en venta
+                </span>
+                <span
+                  className="home__container__stats__list__stat__value"
+                >
+                  0
                 </span>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

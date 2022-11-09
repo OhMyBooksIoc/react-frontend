@@ -11,42 +11,55 @@
       flex-direction: column;
       text-align: center;
       justify-content: center;
-      background: #ffbf59;
-      height: 248px;
+      background: $white;
       color: $black;
-      padding: 24px;
+      padding: 32px 24px;
+
+      &__pre-title {
+        color: $blue;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 18px;
+        padding-bottom: 12px;
+      }
 
       &__title {
-        font-size: 32px;
-        font-weight: 600;
+        color: $black;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 36px;
+        padding-bottom: 20px;
       }
 
       &__subtitle {
-        font-size: 18px;
-        font-weight: normal;
+        color: $gray-dark;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
       }
 
       &__button {
-        margin-top: 12px;
-        margin-bottom: 20px;
         align-self: center;
-        background: $black;
+        background: $dark-blue;
         color: $white;
         text-decoration: none;
         width: max-content;
-        padding: 12px 32px;
-        border-radius: 5px;
-        font-size: 14px;
+        padding: 9px 14px;
+        border-radius: 6px;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 18px;
         border: none;
       }
     }
 
     &__content {
       padding: 32px 24px;
-      text-align: center;
 
       @include media("tablet") {
         padding: 64px 24px;
+        padding-bottom: 0;
       }
 
       @include media("desktop") {
@@ -54,110 +67,81 @@
         margin: auto;
       }
 
-      &__title {
-        font-size: 22px;
-        font-weight: 600;
-        margin: 0;
-        margin-bottom: 12px;
-      }
-
-      &__subtitle {
-        font-size: 16px;
-        font-weight: normal;
-        color: $gray-dark;
-        margin-bottom: 32px;
-        margin-top: 8px;
-
-        @include media("tablet") {
-          padding: 0px 48px;
-        }
-      }
-
       &__features {
         display: flex;
         flex-direction: column;
         gap: 24px;
-        &__feature {
+
+        &__card {
+          background: $white;
+          padding: 36px 24px;
+          border-radius: 14px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+          height: 170px;
           display: flex;
           flex-direction: column;
-          align-items: center;
+          justify-content: center;
 
-          @include media("tablet") {
-            flex-direction: row;
-            gap: 24px;
+          &__title {
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 26px;
+            text-align: start;
+            padding-bottom: 16px;
           }
 
-          &--reverse {
-            @include media("tablet") {
-              flex-direction: row-reverse;
-            }
-          }
-
-          &__container {
-            display: flex;
-            flex-direction: column;
-
-            &__title {
-              font-size: 20px;
-              margin-top: 0;
-              margin-bottom: 8px;
-              text-align: left;
-            }
-
-            &__description {
-              font-size: 16px;
-              text-align: left;
-              margin: 0 0 16px 0;
-              color: $gray-dark;
-            }
-          }
-
-          &__img {
-            max-width: 400px;
-            max-height: 100%;
+          &__description {
+            font-size: 16px;
+            line-height: 22px;
+            letter-spacing: 0.01em;
           }
         }
       }
+    }
 
-      &__stats {
+    &__stats {
+      padding: 32px 24px;
+      @include media("tablet") {
+        width: 680px;
+        margin: auto;
+      }
+
+      &__title {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 26px;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      &__list {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
         @include media("tablet") {
-          width: 680px;
-          margin: auto;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
+        &__stat {
+          display: flex;
+          flex-direction: column;
+          background: $yellow-dark;
+          padding: 24px 16px;
+          border-radius: 14px;
+          color: $white;
+          text-align: center;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 
-        &__title {
-          font-size: 22px;
-          font-weight: 600;
-          margin-top: 40px;
-          margin-bottom: 24px;
-        }
-
-        &__list {
-          display: grid;
-          gap: 16px;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-
-          @include media("tablet") {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+          &__value {
+            font-weight: bold;
+            font-size: 28px;
           }
 
-          &__stat {
-            display: flex;
-            flex-direction: column;
-            background: #ffbf59;
-            padding: 24px 16px;
-            border-radius: 10px;
-            color: $black;
-            &__value {
-              font-weight: bold;
-              font-size: 30px;
-              margin-bottom: 4px;
-            }
-
-            &__title {
-              font-style: italic;
-            }
+          &__title {
+            margin-bottom: 8px;
           }
         }
       }
