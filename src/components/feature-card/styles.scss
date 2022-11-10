@@ -1,0 +1,63 @@
+@import "../../styles.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  &__container {
+    flex-grow: 1;
+
+    &__content {
+      padding: 32px 24px;
+
+      @include media("tablet") {
+        padding: 48px 32px;
+      }
+
+      @include media("desktop") {
+        width: 960px;
+        margin: auto;
+      }
+
+      &__features {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        @include media("tablet") {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 38px;
+          padding: 0px 24px;
+        }
+
+        &__card {
+          background: $white;
+          padding: 36px 24px;
+          border-radius: 14px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+          height: 170px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          &__title {
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 26px;
+            text-align: start;
+            padding-bottom: 16px;
+            font-family: $poppins;
+          }
+
+          &__description {
+            font-size: 16px;
+            line-height: 22px;
+            letter-spacing: 0.01em;
+            font-family: $lora;
+          }
+        }
+      }
+    }
+  }
+}
