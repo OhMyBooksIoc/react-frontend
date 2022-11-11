@@ -33,12 +33,11 @@ function RegisterPage() {
   };
 
   return (
+    <div className="container">
     <div className="register">
       <div className="register__header">
-        <h1 className="register__header__title">Crea tu cuenta</h1>
-        <span className="register__header__subtitle">
-          Bienvenido a OhMyBooks!
-        </span>
+        <span className="register__header__pretitle">Benvingut a OhMyBooks!</span>
+        <h1 className="register__header__title">Crea el teu compte</h1>
       </div>
       <div className="register__content">
         <form
@@ -50,14 +49,13 @@ function RegisterPage() {
               className="register__content__form__item__label"
               htmlFor="name"
             >
-              Nombre
+             Nom
             </label>
 
             <input
               className="register__content__form__item__input"
               id="name"
               type="text"
-              placeholder="Nombre"
               required
               {...register("name", { required: true })}
             />
@@ -67,12 +65,11 @@ function RegisterPage() {
               className="register__content__form__item__label"
               htmlFor="lastname"
             >
-              Apellido
+              Cognom
             </label>
 
             <input
               className="register__content__form__item__input"
-              placeholder="Apellido"
               id="lastname"
               type="text"
               required
@@ -84,81 +81,82 @@ function RegisterPage() {
               className="register__content__form__item__label"
               htmlFor="email"
             >
-              Correo electrónico
+              Correu electrònic
             </label>
 
             <input
               className="register__content__form__item__input"
-              placeholder="Correo electrónico"
               id="email"
               type="email"
               required
               {...register("email", { required: true })}
             />
           </div>
-          <div className="register__content__form__item">
+          {/* <div className="register__content__form__item">
             <label
               className="register__content__form__item__label"
-              htmlFor="confirm-email"
+              htmlFor="confirmEmail"
             >
-              Confirmar correo electrónico
+              Confirmar correu electrònic
             </label>
 
             <input
               className="register__content__form__item__input"
-              placeholder=" Confirmar correo electrónico"
-              id="confirm-email"
+              id="confirmEmail"
               type="email"
-              {...register("confirm-email", { required: true })}
               required
+              {...register("confirmEmail", { required: true })}
             />
-          </div>
+          </div> */}
           <div className="register__content__form__item">
             <label
               className="register__content__form__item__label"
               htmlFor="password"
             >
-              Contraseña
+              Contrasenya
             </label>
 
             <input
               className="register__content__form__item__input"
-              placeholder="Contraseña"
               id="password"
               type="password"
               required
               {...register("password", { required: true })}
             />
           </div>
-          <div className="register__content__form__item">
+          {/* <div className="register__content__form__item">
             <label
               className="register__content__form__item__label"
-              htmlFor="confirm-password"
+              htmlFor="confirmPassword"
             >
-              Confirmar contraseña
+              Confirmar contrasenya
             </label>
 
             <input
               className="register__content__form__item__input"
-              placeholder="Confirmar contraseña"
-              id="confirm-password"
+              id="confirmPassword"
               type="password"
               required
-              {...register("confirm-password", { required: true })}
+              {...register("confirmPassword", { required: true })}
             />
-          </div>
-          <button className="register__content__form__button" type="submit">
-            <span>Crear una cuenta</span>
+          </div> */}
+          <button className="register__content__form__button">
+            Crear un compte
           </button>
         </form>
         <div className="register__content__register">
-          <span>¿Ya tienes una cuenta?</span>
-          <a className="register__content__register__link" href="/login">
-            Iniciar sesión
+          <span>Ja tens un compte?</span>
+          <a
+            className="register__content__register__link"
+            href="/register"
+            tabindex="6"
+          >
+            Iniciar sessió
           </a>
         </div>
       </div>
     </div>
+  </div>
   );
 }
 
