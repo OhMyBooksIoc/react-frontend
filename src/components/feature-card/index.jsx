@@ -1,18 +1,18 @@
 import React from "react";
+
 import './styles.scss';
 
-function FeatureCard(props){
+function FeatureCard({ title, description}){
   return (
-    <div className="home__container__content__features__card">
-      <div className="home__container__content__features__card__title">
-        {props.title}
+    <div className="feature-card">
+      <div className="feature-card__title ">
+        {title}
       </div>
-      <div className="home__container__content__features__card__description">
-        {props.description}
+      <div className="feature-card__description">
+        {description}
       </div>
     </div>
   );
-  
-}
+} 
 
 export default FeatureCard;
