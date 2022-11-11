@@ -12,19 +12,31 @@ $header-height: 56px;
   font-size: 24px;
 
   @include media("tablet") {
-    padding: 16px 32px;
+    padding: 8px 32px;
   }
 
   &__container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    align-items: stretch;
+
+    @include media("tablet") {
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &__logo {
       display: flex;
       align-items: center;
       width: 150px;
+      margin-left: 16px;
+      padding-top: 3px;
+
+      @include media("tablet") {
+        margin-left: 0;
+        padding-top: 0;
+      }
 
       img {
         height: 100%;
