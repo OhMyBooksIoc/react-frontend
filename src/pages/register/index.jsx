@@ -1,20 +1,24 @@
+import { useState } from "react";
+
 import { useForm } from "react-hook-form";
+
+import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
 function RegisterPage() {
-  const {
-    register,
-    handleSubmit,
-  } = useForm({
+  const [error, setError] = useState(null);
+
+  const { register, handleSubmit } = useForm({
     mode: "onTouched",
   });
 
-  const onSubmit = async ({ email, name, lastName, password }) => {
+  const onSubmit = async ({ email, name, userName, password }) => {
+    setError(null);
     const body = {
       email,
       name,
-      lastName,
+      userName,
       password,
     };
 
@@ -24,75 +28,83 @@ function RegisterPage() {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch('http://localhost:8080/user', requestOptions);
+    const response = await fetch(
+      "http://localhost:8080/auth/newUser",
+      requestOptions
+    );
     const data = await response.json();
 
     if (data.status === "200 OK") {
       window.location.href = "/login";
+    } else {
+      setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
     }
   };
 
   return (
     <div className="container">
-    <div className="register">
-      <div className="register__header">
-        <span className="register__header__pretitle">Benvingut a OhMyBooks!</span>
-        <h1 className="register__header__title">Crea el teu compte</h1>
-      </div>
-      <div className="register__content">
-        <form
-          className="register__content__form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="register__content__form__item">
-            <label
-              className="register__content__form__item__label"
-              htmlFor="name"
-            >
-             Nom
-            </label>
+      <div className="register">
+        <div className="register__header">
+          <span className="register__header__pretitle">
+            Benvingut a OhMyBooks!
+          </span>
+          <h1 className="register__header__title">Crea el teu compte</h1>
+        </div>
+        <div className="register__content">
+          { error ? <FormError message={error} /> : null }
+          <form
+            className="register__content__form"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="register__content__form__item">
+              <label
+                className="register__content__form__item__label"
+                htmlFor="name"
+              >
+                Nom
+              </label>
 
-            <input
-              className="register__content__form__item__input"
-              id="name"
-              type="text"
-              required
-              {...register("name", { required: true })}
-            />
-          </div>
-          <div className="register__content__form__item">
-            <label
-              className="register__content__form__item__label"
-              htmlFor="lastname"
-            >
-              Cognom
-            </label>
+              <input
+                className="register__content__form__item__input"
+                id="name"
+                type="text"
+                required
+                {...register("name", { required: true })}
+              />
+            </div>
+            <div className="register__content__form__item">
+              <label
+                className="register__content__form__item__label"
+                htmlFor="username"
+              >
+                Usuari
+              </label>
 
-            <input
-              className="register__content__form__item__input"
-              id="lastname"
-              type="text"
-              required
-              {...register("lastName", { required: true })}
-            />
-          </div>
-          <div className="register__content__form__item">
-            <label
-              className="register__content__form__item__label"
-              htmlFor="email"
-            >
-              Correu electrònic
-            </label>
+              <input
+                className="register__content__form__item__input"
+                id="username"
+                type="text"
+                required
+                {...register("userName", { required: true })}
+              />
+            </div>
+            <div className="register__content__form__item">
+              <label
+                className="register__content__form__item__label"
+                htmlFor="email"
+              >
+                Correu electrònic
+              </label>
 
-            <input
-              className="register__content__form__item__input"
-              id="email"
-              type="email"
-              required
-              {...register("email", { required: true })}
-            />
-          </div>
-          {/* <div className="register__content__form__item">
+              <input
+                className="register__content__form__item__input"
+                id="email"
+                type="email"
+                required
+                {...register("email", { required: true })}
+              />
+            </div>
+            {/* <div className="register__content__form__item">
             <label
               className="register__content__form__item__label"
               htmlFor="confirmEmail"
@@ -108,23 +120,23 @@ function RegisterPage() {
               {...register("confirmEmail", { required: true })}
             />
           </div> */}
-          <div className="register__content__form__item">
-            <label
-              className="register__content__form__item__label"
-              htmlFor="password"
-            >
-              Contrasenya
-            </label>
+            <div className="register__content__form__item">
+              <label
+                className="register__content__form__item__label"
+                htmlFor="password"
+              >
+                Contrasenya
+              </label>
 
-            <input
-              className="register__content__form__item__input"
-              id="password"
-              type="password"
-              required
-              {...register("password", { required: true })}
-            />
-          </div>
-          {/* <div className="register__content__form__item">
+              <input
+                className="register__content__form__item__input"
+                id="password"
+                type="password"
+                required
+                {...register("password", { required: true })}
+              />
+            </div>
+            {/* <div className="register__content__form__item">
             <label
               className="register__content__form__item__label"
               htmlFor="confirmPassword"
@@ -140,23 +152,23 @@ function RegisterPage() {
               {...register("confirmPassword", { required: true })}
             />
           </div> */}
-          <button className="register__content__form__button">
-            Crear un compte
-          </button>
-        </form>
-        <div className="register__content__register">
-          <span>Ja tens un compte?</span>
-          <a
-            className="register__content__register__link"
-            href="/register"
-            tabindex="6"
-          >
-            Iniciar sessió
-          </a>
+            <button className="register__content__form__button">
+              Crear un compte
+            </button>
+          </form>
+          <div className="register__content__register">
+            <span>Ja tens un compte?</span>
+            <a
+              className="register__content__register__link"
+              href="/login"
+              tabindex="6"
+            >
+              Iniciar sessió
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
