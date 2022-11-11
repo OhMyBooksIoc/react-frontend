@@ -9,7 +9,11 @@ import "./styles.scss";
 function RegisterPage() {
   const [error, setError] = useState(null);
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: "onTouched",
   });
 
@@ -32,13 +36,13 @@ function RegisterPage() {
       "http://localhost:8080/auth/newUser",
       requestOptions
     );
-    const data = await response.json();
 
-    if (data.status === "200 OK") {
-      window.location.href = "/login";
-    } else {
+    if (response.status !== 201) {
       setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
+      return;
     }
+
+    window.location.href = "/login";
   };
 
   return (
@@ -51,7 +55,7 @@ function RegisterPage() {
           <h1 className="register__header__title">Crea el teu compte</h1>
         </div>
         <div className="register__content">
-          { error ? <FormError message={error} /> : null }
+          {error ? <FormError message={error} /> : null}
           <form
             className="register__content__form"
             onSubmit={handleSubmit(onSubmit)}
@@ -71,6 +75,12 @@ function RegisterPage() {
                 required
                 {...register("name", { required: true })}
               />
+
+              {!!errors["name"] && (
+                <span className="register__content__form__item__error">
+                  Introdueix un nom vàlid
+                </span>
+              )}
             </div>
             <div className="register__content__form__item">
               <label
@@ -87,6 +97,12 @@ function RegisterPage() {
                 required
                 {...register("userName", { required: true })}
               />
+
+              {!!errors["userName"] && (
+                <span className="register__content__form__item__error">
+                  Introdueix un nom d'usuari vàlid
+                </span>
+              )}
             </div>
             <div className="register__content__form__item">
               <label
@@ -103,6 +119,12 @@ function RegisterPage() {
                 required
                 {...register("email", { required: true })}
               />
+
+              {!!errors["email"] && (
+                <span className="register__content__form__item__error">
+                  Introdueix un correu electrònic vàlid
+                </span>
+              )}
             </div>
             {/* <div className="register__content__form__item">
             <label
@@ -135,6 +157,12 @@ function RegisterPage() {
                 required
                 {...register("password", { required: true })}
               />
+
+              {!!errors["password"] && (
+                <span className="register__content__form__item__error">
+                  Introdueix una contrasenya vàlida
+                </span>
+              )}
             </div>
             {/* <div className="register__content__form__item">
             <label
@@ -161,7 +189,7 @@ function RegisterPage() {
             <a
               className="register__content__register__link"
               href="/login"
-              tabindex="6"
+              tabIndex="6"
             >
               Iniciar sessió
             </a>

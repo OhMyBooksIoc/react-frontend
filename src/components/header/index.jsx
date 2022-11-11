@@ -25,6 +25,9 @@ function MenuItems() {
       <a href="/" className="header__container__items__item">
        Inici
       </a>
+      <a href="/about-us" className="header__container__items__item">
+      Qui som?
+      </a>
       {!isAuthenticated ? (
         <a href="/register" className="header__container__items__item">
          Registre

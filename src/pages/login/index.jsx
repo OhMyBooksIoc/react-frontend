@@ -17,9 +17,9 @@ function LoginPage() {
     mode: "onTouched",
   });
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ userName, password }) => {
     const body = {
-      email,
+      userName,
       password,
     };
 
@@ -41,7 +41,7 @@ function LoginPage() {
 
     const { user } = await response.json();
 
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", JSON.stringify(user));
     localStorage.setItem("isAuthenticated", true);
     window.location.href = "/my-account";
   };
@@ -107,7 +107,7 @@ function LoginPage() {
             <a
               className="login__content__form__recovery-pwd"
               href="/es/es/password-reset/"
-              tabindex="3"
+              tabIndex="3"
             >
               Has oblidat la teva contrasenya?
             </a>
@@ -117,7 +117,7 @@ function LoginPage() {
             <a
               className="login__content__register__link"
               href="/register"
-              tabindex="6"
+              tabIndex="6"
             >
               Registra't
             </a>
