@@ -23,11 +23,14 @@ function MenuItems() {
   return (
     <div className="header__container__items">
       <a href="/" className="header__container__items__item">
-       Inici
+        Inici
+      </a>
+      <a href="/about-us" className="header__container__items__item">
+        Qui som?
       </a>
       {!isAuthenticated ? (
         <a href="/register" className="header__container__items__item">
-         Registre
+          Registre
         </a>
       ) : null}
 
@@ -59,17 +62,17 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <a className="header__container__logo" href="/">
-          <img src="./images/logo.png" />
-        </a>
-        {isDesktop ? (
-          <MenuItems />
-        ) : (
+        {!isDesktop ? (
           <FontAwesomeIcon
             icon={!menuIsOpen ? faBars : faTimes}
             onClick={() => setMenuIsOpen(!menuIsOpen)}
           />
-        )}
+        ) : null}
+
+        <a className="header__container__logo" href="/">
+          <img src="./images/logo.png" />
+        </a>
+        {isDesktop ? <MenuItems /> : null}
       </div>
       {menuIsOpen && !isDesktop ? (
         <div

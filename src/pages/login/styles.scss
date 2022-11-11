@@ -89,6 +89,14 @@
           border-radius: 6px;
           font-family: $poppins;
         }
+
+        &__error {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 21px;
+            font-family: $poppins;
+            color: $red-dark;
+        }
       }
 
       &__recovery-pwd {
@@ -125,6 +133,10 @@
           &:hover {
             background: $yellow-dark;
             cursor: pointer;
+          }
+
+          &:active {
+            background: $yellow;
           }
       }
     }

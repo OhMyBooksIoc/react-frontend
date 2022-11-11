@@ -1,0 +1,16 @@
+@import "../../styles.scss";
+
+.form-error {
+    background-color: $light-red;
+    padding: 8px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+
+    &__title {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 21px;
+        font-family: $poppins;
+        color: $red;
+    }
+}
