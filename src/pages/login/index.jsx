@@ -29,21 +29,25 @@ function LoginPage() {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch(
-      "http://localhost:8080/auth/login",
-      requestOptions
-    );
-
-    if (response.status !== 200) {
-      setError("Usuari o contrasenya incorrecte.");
-      return;
+    try {
+      const response = await fetch(
+        "http://localhost:8080/auth/login",
+        requestOptions
+      );
+  
+      if (response.status !== 200) {
+        setError("Usuari o contrasenya incorrecte.");
+        return;
+      }
+  
+      const { user } = await response.json();
+  
+      localStorage.setItem("token", JSON.stringify(user));
+      localStorage.setItem("isAuthenticated", true);
+      window.location.href = "/my-account";
+    } catch(err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
     }
-
-    const { user } = await response.json();
-
-    localStorage.setItem("token", JSON.stringify(user));
-    localStorage.setItem("isAuthenticated", true);
-    window.location.href = "/my-account";
   };
 
   return (

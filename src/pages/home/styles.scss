@@ -102,10 +102,10 @@
         &__stat {
           display: flex;
           flex-direction: column;
-          background: $yellow-dark;
+          background: $yellow;
           padding: 24px 16px;
           border-radius: 14px;
-          color: $white;
+          color: $black;
           text-align: center;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
             rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -113,6 +113,7 @@
           &__value {
             font-weight: bold;
             font-size: 28px;
+            color: $dark-blue;
           }
 
           &__title {

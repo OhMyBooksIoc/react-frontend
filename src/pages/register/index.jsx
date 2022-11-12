@@ -32,17 +32,21 @@ function RegisterPage() {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch(
-      "http://localhost:8080/auth/newUser",
-      requestOptions
-    );
-
-    if (response.status !== 201) {
-      setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
-      return;
+    try {
+      const response = await fetch(
+        "http://localhost:8080/auth/newUser",
+        requestOptions
+      );
+  
+      if (response.status !== 201) {
+        setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
+        return;
+      }
+  
+      window.location.href = "/login";
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
     }
-
-    window.location.href = "/login";
   };
 
   return (
