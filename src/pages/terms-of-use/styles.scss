@@ -1,42 +1,52 @@
 @import "../../styles.scss";
 
-.text-container{
+.terms-of-use {
+  text-align: left;
+  padding: 32px 24px;
+  color: $black;
+
+  @include media("tablet") {
+    width: 600px;
+    margin: 50px auto;
+  }
+
+  @include media("desktop") {
+    width: 900px;
+  }
+
+  @include media("desktop-wide") {
+    width: 1200px;
+  }
+
+  &__header {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    padding-bottom: 20px;
+    font-family: $poppins;
+    text-align: center;
+    padding: 0;
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: $poppins;
+  }
+
+  &__subtitle {
+    font-family: $lora;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: $poppins;
+    color: $gray;
+  }
+
+  &__text {
     align-items: center;
     justify-content: center;
-    text-align: center;
-    margin: 30px 360px 30px 360px;
-
-    &__header {
-        justify-content: center;
-        text-align: center;
-        font-weight: bold;
-        font-family: $poppins;
-    }
-
-    &__title {
-        text-align: left;
-        font-weight: bold;
-        font-family: $poppins;
-    }
-
-    &__subtitle {
-        text-align: left;
-        padding-left: 30px;
-        font-family: $lora;
-    }
-
-    &__text {
-        align-items: center;
-        justify-content: center;
-        text-align: justify;
-        font-family: $lora;
-    }
-
-}
-
-#text-list {
-    padding-left: 30px;
+    text-align: justify;
     font-family: $lora;
-    text-align: left;
+    font-size: 14px;
+  }
 }
-
