@@ -1,0 +1,203 @@
+@import "../../styles.scss";
+
+.my-account {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    background: $dark-blue;
+
+    &__profile-pic {
+      position: relative;
+      bottom: -40px;
+      height: 80px;
+      width: 80px;
+
+      background: url("https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=100");
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 5px solid #ffffff;
+      border-radius: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 12px;
+
+    &__personal-information {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &__title {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 33px;
+          color: $black;
+          font-family: $poppins;
+        }
+
+        &__edit {
+          font-size: 14px;
+          line-height: 22px;
+          color: $gray;
+          font-family: $poppins;
+        }
+      }
+
+      &__data {
+        padding: 0 8px;
+        display: flex;
+        flex-direction: row;
+        font-family: $poppins;
+        font-size: 14px;
+        line-height: 24px;
+        gap: 6px;
+        color: $black;
+
+        &__title {
+          font-weight: 600;
+        }
+
+        &__value {
+          color: $gray;
+        }
+      }
+    }
+
+    &__books {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &__title {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 33px;
+          color: $black;
+          font-family: $poppins;
+        }
+
+        &__add-book {
+          font-size: 14px;
+          line-height: 22px;
+          color: $gray;
+          font-family: $poppins;
+        }
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+
+        &__book {
+          display: flex;
+          flex-direction: row;
+          gap: 8px;
+          border-bottom: 1px solid $ligth-gray;
+          padding: 20px 8px;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+
+          &__image {
+            width: 60px;
+            height: 85px;
+          }
+
+          &__content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            &__status {
+              font-size: 12px;
+              line-height: 22px;
+              font-family: $poppins;
+              &--pending {
+                color: $yellow-dark;
+              }
+
+              &--read {
+                color: green;
+              }
+
+              &--hide {
+                color: $gray;
+              }
+            }
+
+            &__title {
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 22px;
+              color: $black;
+              font-family: $poppins;
+            }
+
+            &__author {
+              font-size: 12px;
+              line-height: 22px;
+              color: $gray;
+              font-family: $poppins;
+            }
+
+            &__delete {
+              position: relative;
+              left: calc(100% - 14px);
+              top: -41px;
+              color: $red;
+            }
+
+            &__actions {
+              display: flex;
+              flex-direction: row;
+              gap: 8px;
+              justify-content: flex-end;
+              font-size: 12px;
+              line-height: 22px;
+
+              font-family: $poppins;
+
+              button {
+                color: $white;
+                border: 0;
+                border-radius: 6px;
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+                  0 4px 6px -2px rgb(0 0 0 / 5%);
+                padding: 4px 12px;
+              }
+
+              &__hide {
+                background: $gray;
+              }
+
+              &__read {
+                background: green;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
