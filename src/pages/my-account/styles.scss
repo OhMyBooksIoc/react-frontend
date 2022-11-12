@@ -3,12 +3,21 @@
 .my-account {
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   &__header {
     display: flex;
     justify-content: center;
     height: 100px;
     background: $dark-blue;
+
+    @include media("tablet") {
+      height: 140px;
+    }
+
+    @include media("desktop-wide") {
+      height: 160px;
+    }
 
     &__profile-pic {
       position: relative;
@@ -21,14 +30,40 @@
       background-size: cover;
       border: 5px solid #ffffff;
       border-radius: 100%;
+
+
+      @include media("tablet") {
+        height: 100px;
+        width: 100px;
+        bottom: -60px;
+      }
+
+      @include media("desktop-wide") {
+        bottom: -80px;
+      }
     }
   }
 
   &__content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding: 40px 24px;
     gap: 12px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+
+    @include media("tablet") {
+      width: 600px;
+      margin: 50px auto;
+    }
+
+    @include media("desktop") {
+      width: 900px;
+    }
+
+    @include media("desktop-wide") {
+      width: 1200px;
+    }
 
     &__personal-information {
       display: flex;
@@ -80,13 +115,13 @@
     &__books {
       display: flex;
       flex-direction: column;
-      gap: 8px;
 
       &__head {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: baseline;
+        padding-bottom: 8px;
 
         &__title {
           font-weight: 700;
@@ -104,16 +139,39 @@
         }
       }
 
+      &__subtitle {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 33px;
+        color: $gray-dark;
+        font-family: $poppins;
+        padding: 0 8px;
+      }
+
       &__list {
         display: flex;
         flex-direction: column;
+
+        @include media("tablet") {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-gap: 16px;
+        }
+
+        @include media("desktop") {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
 
         &__book {
           display: flex;
           flex-direction: row;
           gap: 8px;
           border-bottom: 1px solid $ligth-gray;
-          padding: 20px 8px;
+          padding: 20px 8px 0 8px;
+
+          @include media("tablet") {
+            border-bottom: 0;
+          }
 
           &:last-child {
             border-bottom: 0;
@@ -161,10 +219,25 @@
               font-family: $poppins;
             }
 
+            &__status {
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 22px;
+              font-family: $poppins;
+
+              &--pending {
+                color: $yellow-dark;
+              }
+
+              &--read {
+                color: green;
+              }
+            }
+
             &__delete {
               position: relative;
               left: calc(100% - 14px);
-              top: -41px;
+              top: -88px;
               color: $red;
             }
 
@@ -194,8 +267,37 @@
               &__read {
                 background: green;
               }
+
+              &__visible {
+                background-color: $blue;
+              }
+
+              &__pending {
+                background-color: $yellow;
+              }
             }
           }
+        }
+      }
+    }
+
+    &__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &__title {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 33px;
+          color: $black;
+          font-family: $poppins;
         }
       }
     }
