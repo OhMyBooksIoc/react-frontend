@@ -17,41 +17,6 @@ function MyAccountPage() {
       </div>
 
       <div className="my-account__content">
-        <div className="my-account__content__personal-information">
-          <div className="my-account__content__personal-information__head">
-            <div className="my-account__content__personal-information__head__title">
-              Dades personals
-            </div>
-            <div className="my-account__content__personal-information__head__edit">
-              Modificar
-            </div>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Nom i Cognoms:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              Lorem Ipsum
-            </span>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Usuari:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              ohmybooks
-            </span>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Correu:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              ohmybooks@gmail.com
-            </span>
-          </div>
-        </div>
-
         <div className="my-account__content__books">
           <div className="my-account__content__books__head">
             <div className="my-account__content__books__head__title">
@@ -89,131 +54,72 @@ function MyAccountPage() {
                     <FontAwesomeIcon icon={faCheck} />
                   </button>
                 </div>
-                <div className="my-account__content__books__list__book__content__delete">
+              </div>
+              <div className="my-account__content__books__list__book__delete">
                   <FontAwesomeIcon icon={faTrash} />
                 </div>
-              </div>
             </div>
             <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> LLegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-                <div className="my-account__content__books__list__book__content__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
-              </div>
-            </div>
-           
-
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> LLegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-                <div className="my-account__content__books__list__book__content__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
-              </div>
-            </div>
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> LLegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-                <div className="my-account__content__books__list__book__content__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
-              </div>
-            </div>
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> LLegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-                <div className="my-account__content__books__list__book__content__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
-              </div>
-            </div>
             
+              <img
+                className="my-account__content__books__list__book__image"
+                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
+              />
+              <div className="my-account__content__books__list__book__content">
+                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
+                  <FontAwesomeIcon icon={faCheck} /> Llegit
+                </span>
+                <span className="my-account__content__books__list__book__content__title">
+                  Nunca dejes de soñar
+                </span>
+                <span className="my-account__content__books__list__book__content__author">
+                  Anna Serra
+                </span>
 
+                <div className="my-account__content__books__list__book__content__actions">
+                  <button className="my-account__content__books__list__book__content__actions__hide">
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  </button>
+                  <button className="my-account__content__books__list__book__content__actions__pending">
+                    <FontAwesomeIcon icon={faClock} />
+                  </button>
+                </div>
+                
+              </div>
+              <div className="my-account__content__books__list__book__delete">
+                  <FontAwesomeIcon icon={faTrash} />
+                </div>
+            </div>
+
+            <div className="my-account__content__books__list__book">
+              <img
+                className="my-account__content__books__list__book__image"
+                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
+              />
+              <div className="my-account__content__books__list__book__content">
+                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
+                  <FontAwesomeIcon icon={faCheck} /> Llegit
+                </span>
+                <span className="my-account__content__books__list__book__content__title">
+                  Nunca dejes de soñar
+                </span>
+                <span className="my-account__content__books__list__book__content__author">
+                  Anna Serra
+                </span>
+
+                <div className="my-account__content__books__list__book__content__actions">
+                  <button className="my-account__content__books__list__book__content__actions__hide">
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  </button>
+                  <button className="my-account__content__books__list__book__content__actions__pending">
+                    <FontAwesomeIcon icon={faClock} />
+                  </button>
+                </div>
+              </div>
+              <div className="my-account__content__books__list__book__delete">
+                  <FontAwesomeIcon icon={faTrash} />
+                </div>
+            </div>
           </div>
           <div className="my-account__content__books__subtitle">
             Llibres ocults
@@ -243,21 +149,64 @@ function MyAccountPage() {
                     <FontAwesomeIcon icon={faCheck} />
                   </button>
                 </div>
-                <div className="my-account__content__books__list__book__content__delete">
+                
+              </div>
+              <div className="my-account__content__books__list__book__delete">
                   <FontAwesomeIcon icon={faTrash} />
                 </div>
-              </div>
             </div>
           </div>
         </div>
 
-        <div className="my-account__content__stats">
+        <div className="my-account__content__personal-information">
+          <div className="my-account__content__personal-information__head">
+            <div className="my-account__content__personal-information__head__title">
+              Dades personals
+            </div>
+            <div className="my-account__content__personal-information__head__edit">
+              Modificar
+            </div>
+          </div>
+          <div className="my-account__content__personal-information__data">
+            <span className="my-account__content__personal-information__data__title">
+              Nom i Cognoms:
+            </span>
+            <span className="my-account__content__personal-information__data__value">
+              Lorem Ipsum
+            </span>
+          </div>
+          <div className="my-account__content__personal-information__data">
+            <span className="my-account__content__personal-information__data__title">
+              Usuari:
+            </span>
+            <span className="my-account__content__personal-information__data__value">
+              ohmybooks
+            </span>
+          </div>
+          <div className="my-account__content__personal-information__data">
+            <span className="my-account__content__personal-information__data__title">
+              Correu:
+            </span>
+            <span className="my-account__content__personal-information__data__value">
+              ohmybooks@gmail.com
+            </span>
+          </div>
+
+          {/* <span className="my-account__content__personal-information__change-pwd">
+            Canviar la contrasenya
+          </span> */}
+          <span className="my-account__content__personal-information__delete-user">
+            Suprimeix el compte
+          </span>
+        </div>
+
+        {/* <div className="my-account__content__stats">
           <div className="my-account__content__stats__head">
             <div className="my-account__content__stats__head__title">
               Estadístiques
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
