@@ -17,9 +17,10 @@
   background: $white;
   justify-content: center;
   border-radius: 6px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+ 
 
   @include media("mobile") {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     max-width: 444px;
     margin: auto;
   }
