@@ -12,6 +12,7 @@ import DeleteAccountModal from "../../modals/delete-account";
 import DeleteBookModal from "../../modals/delete-book";
 import AddBookModal from "../../modals/add-book";
 import ModifyAccountModal from "../../modals/modify-account";
+import ModifyPasswordModal from "../../modals/modify-password";
 
 import "./styles.scss";
 
@@ -20,6 +21,7 @@ function MyAccountPage() {
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
+  const [modifPasswordIsOpen, setModifyPasswordIsOpen] = useState(false);
 
   const closeModal = () =>
     addBookIsOpen ? setAddBookIsOpen(false) : setModifyDataIsOpen(false);
@@ -49,6 +51,12 @@ function MyAccountPage() {
         onRequestClose={() => setModifyDataIsOpen(false)}
         closeTimeoutMS={200}
       ></ModifyAccountModal>
+
+      <ModifyPasswordModal
+       isOpen={modifPasswordIsOpen}
+       onRequestClose={() => setModifyPasswordIsOpen(false)}
+       closeTimeoutMS={200}
+     ></ModifyPasswordModal>
 
       <div className="my-account__header">
         <div className="my-account__header__profile-pic"></div>
@@ -245,15 +253,18 @@ function MyAccountPage() {
             </span>
           </div>
 
-          {/* <span className="my-account__content__personal-information__change-pwd">
-            Canviar la contrasenya
-          </span> */}
-          <span
-            className="my-account__content__personal-information__delete-user"
-            onClick={() => setDeleteUserIsOpen(true)}
-          >
-            Suprimeix el compte
-          </span>
+          <div className="my-account__content__personal-information__actions">
+            <span className="my-account__content__personal-information__actions__change-pwd"
+            onClick={() => setModifyPasswordIsOpen(true)}>
+              Canviar clau
+            </span>
+            <span
+              className="my-account__content__personal-information__actions__delete-user"
+              onClick={() => setDeleteUserIsOpen(true)}
+            >
+              Eliminar compte
+            </span>
+          </div>
         </div>
 
         {/* <div className="my-account__content__stats">

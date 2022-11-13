@@ -31,7 +31,6 @@
       border: 5px solid #ffffff;
       border-radius: 100%;
 
-
       @include media("tablet") {
         height: 100px;
         width: 100px;
@@ -59,9 +58,6 @@
       width: 1240px;
       margin: auto;
     }
-
-
-
 
     &__personal-information {
       display: flex;
@@ -117,28 +113,31 @@
         }
       }
 
-      &__change-pwd {
-        font-family: "Poppins", sans-serif;
-        font-size: 12px;
-        line-height: 24px;
-        gap: 4px;
-        padding-left: 8px;
-        color: $gray;
-        padding: 8px 0 12px 8px;
+      &__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 16px 0 0 8px;
+        gap: 48px;
+
+        &__change-pwd {
+          font-family: "Poppins", sans-serif;
+          font-size: 12px;
+          line-height: 24px;
+          gap: 4px;
+          color: $gray;
+          cursor: pointer;
+        }
+
+        &__delete-user {
+          font-family: "Poppins", sans-serif;
+          font-size: 12px;
+          line-height: 24px;
+          gap: 4px;
+          color: $red;
+          cursor: pointer;
+        }
       }
-
-      &__delete-user {
-        font-family: "Poppins", sans-serif;
-        font-size: 12px;
-        line-height: 12px;
-        gap: 4px;
-        padding-left: 8px;
-        padding-top: 24px;
-        color: $red;
-        cursor: pointer;
-      }
-
-
     }
 
     &__books {
@@ -204,8 +203,6 @@
         @include media("desktop-lg") {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-
-        
 
         &__book {
           display: flex;
