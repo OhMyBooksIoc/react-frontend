@@ -10,6 +10,8 @@ import {
 
 import DeleteAccountModal from "../../modals/delete-account";
 import DeleteBookModal from "../../modals/delete-book";
+import AddBookModal from "../../modals/add-book";
+import ModifyAccountModal from "../../modals/modify-account";
 
 import "./styles.scss";
 
@@ -31,10 +33,22 @@ function MyAccountPage() {
       ></DeleteAccountModal>
 
       <DeleteBookModal
-       isOpen={deleteBookIsOpen}
-       onRequestClose={() => setDeleteBookIsOpen(false)}
-       closeTimeoutMS={200}
-     ></DeleteBookModal>
+        isOpen={deleteBookIsOpen}
+        onRequestClose={() => setDeleteBookIsOpen(false)}
+        closeTimeoutMS={200}
+      ></DeleteBookModal>
+
+      <AddBookModal
+        isOpen={addBookIsOpen}
+        onRequestClose={() => setAddBookIsOpen(false)}
+        closeTimeoutMS={200}
+      ></AddBookModal>
+
+      <ModifyAccountModal
+        isOpen={modifyDataIsOpen}
+        onRequestClose={() => setModifyDataIsOpen(false)}
+        closeTimeoutMS={200}
+      ></ModifyAccountModal>
 
       <div className="my-account__header">
         <div className="my-account__header__profile-pic"></div>
@@ -83,7 +97,10 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => setDeleteBookIsOpen(true)}
+                />
               </div>
             </div>
             <div className="my-account__content__books__list__book">
@@ -112,7 +129,10 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon icon={faTrash}  onClick={() => setDeleteBookIsOpen(true)} />
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => setDeleteBookIsOpen(true)}
+                />
               </div>
             </div>
 
@@ -142,7 +162,10 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => setDeleteBookIsOpen(true)}
+                />
               </div>
             </div>
           </div>
@@ -176,7 +199,10 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => setDeleteBookIsOpen(true)}
+                />
               </div>
             </div>
           </div>

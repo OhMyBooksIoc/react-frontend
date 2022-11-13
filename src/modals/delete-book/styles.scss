@@ -9,7 +9,6 @@
   @include media("tablet") {
     width: 400px;
   }
-
 }
 
 .delete-book {
@@ -72,6 +71,9 @@
       cursor: pointer;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
         0 4px 6px -2px rgb(0 0 0 / 5%);
+      &:focus-visible {
+        outline: none;
+      }
 
       &--cancel {
         background: $gray;

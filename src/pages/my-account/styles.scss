@@ -248,7 +248,7 @@
               }
 
               &--read {
-                color: green;
+                color: $green;
               }
 
               &--hide {
@@ -282,7 +282,7 @@
               }
 
               &--read {
-                color: green;
+                color: $green;
               }
             }
 
@@ -315,7 +315,7 @@
               }
 
               &__read {
-                background: green;
+                background: $green;
               }
 
               &__visible {
