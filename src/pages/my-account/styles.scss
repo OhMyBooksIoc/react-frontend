@@ -48,11 +48,16 @@
     flex: 1;
     display: flex;
     flex-direction: column-reverse;
-    padding: 40px 24px;
+    padding: 60px 24px 40px 24px;
     gap: 12px;
 
     @include media("tablet") {
       flex-direction: row;
+    }
+
+    @include media("desktop-lg") {
+      width: 1240px;
+      margin: auto;
     }
 
 
@@ -64,6 +69,10 @@
       box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
       height: min-content;
       padding: 16px;
+
+      @include media("tablet") {
+        padding: 16px 32px;
+      }
 
       &__head {
         display: flex;
@@ -85,6 +94,7 @@
           line-height: 22px;
           color: $gray;
           font-family: $poppins;
+          cursor: pointer;
         }
       }
 
@@ -125,16 +135,22 @@
         padding-left: 8px;
         padding-top: 24px;
         color: $red;
+        cursor: pointer;
       }
 
 
     }
 
     &__books {
+      flex: 1;
       display: flex;
       flex-direction: column;
       box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
       padding: 16px;
+
+      @include media("tablet") {
+        padding: 16px 32px;
+      }
 
       &__head {
         display: flex;
@@ -156,6 +172,7 @@
           line-height: 22px;
           color: $gray;
           font-family: $poppins;
+          cursor: pointer;
         }
       }
 
@@ -179,8 +196,16 @@
         // }
 
         @include media("desktop") {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-gap: 16px;
+        }
+
+        @include media("desktop-lg") {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
+
+        
 
         &__book {
           display: flex;
@@ -201,6 +226,7 @@
             position: relative;
             top: 0px;
             color: $red;
+            cursor: pointer;
           }
 
           &__image {
@@ -281,6 +307,7 @@
                 box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
                   0 4px 6px -2px rgb(0 0 0 / 5%);
                 padding: 4px 12px;
+                cursor: pointer;
               }
 
               &__hide {
