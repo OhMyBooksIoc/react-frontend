@@ -47,48 +47,54 @@
   &__content {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    padding: 40px 24px;
+    flex-direction: column-reverse;
+    padding: 60px 24px 40px 24px;
     gap: 12px;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 
     @include media("tablet") {
-      width: 600px;
-      margin: 50px auto;
+      flex-direction: row;
     }
 
-    @include media("desktop") {
-      width: 900px;
+    @include media("desktop-lg") {
+      width: 1240px;
+      margin: auto;
     }
 
-    @include media("desktop-wide") {
-      width: 1200px;
-    }
+
+
 
     &__personal-information {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+      height: min-content;
+      padding: 16px;
+
+      @include media("tablet") {
+        padding: 16px 32px;
+      }
 
       &__head {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
+        padding-bottom: 8px;
 
         &__title {
           font-weight: 700;
-          font-size: 18px;
+          font-size: 16px;
           line-height: 33px;
           color: $black;
           font-family: $poppins;
         }
 
         &__edit {
-          font-size: 14px;
+          font-size: 12px;
           line-height: 22px;
           color: $gray;
           font-family: $poppins;
+          cursor: pointer;
         }
       }
 
@@ -97,9 +103,9 @@
         display: flex;
         flex-direction: row;
         font-family: $poppins;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 24px;
-        gap: 6px;
+        gap: 4px;
         color: $black;
 
         &__title {
@@ -107,41 +113,72 @@
         }
 
         &__value {
-          color: $gray;
+          color: $gray-dark;
         }
       }
+
+      &__change-pwd {
+        font-family: "Poppins", sans-serif;
+        font-size: 12px;
+        line-height: 24px;
+        gap: 4px;
+        padding-left: 8px;
+        color: $gray;
+        padding: 8px 0 12px 8px;
+      }
+
+      &__delete-user {
+        font-family: "Poppins", sans-serif;
+        font-size: 12px;
+        line-height: 12px;
+        gap: 4px;
+        padding-left: 8px;
+        padding-top: 24px;
+        color: $red;
+        cursor: pointer;
+      }
+
+
     }
 
     &__books {
+      flex: 1;
       display: flex;
       flex-direction: column;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+      padding: 16px;
+
+      @include media("tablet") {
+        padding: 16px 32px;
+      }
 
       &__head {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: baseline;
-        padding-bottom: 8px;
+        align-items: center;
+        padding-bottom: 4px;
 
         &__title {
           font-weight: 700;
-          font-size: 18px;
+          font-size: 16px;
           line-height: 33px;
           color: $black;
           font-family: $poppins;
         }
 
         &__add-book {
-          font-size: 14px;
+          font-size: 12px;
           line-height: 22px;
           color: $gray;
           font-family: $poppins;
+          cursor: pointer;
         }
       }
 
       &__subtitle {
         font-weight: 600;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 33px;
         color: $gray-dark;
         font-family: $poppins;
@@ -152,22 +189,30 @@
         display: flex;
         flex-direction: column;
 
-        @include media("tablet") {
+        // @include media("tablet") {
+        //   display: grid;
+        //   grid-template-columns: repeat(2, minmax(0, 1fr));
+        //   grid-gap: 16px;
+        // }
+
+        @include media("desktop") {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
           grid-gap: 16px;
         }
 
-        @include media("desktop") {
+        @include media("desktop-lg") {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
+
+        
 
         &__book {
           display: flex;
           flex-direction: row;
           gap: 8px;
           border-bottom: 1px solid $ligth-gray;
-          padding: 20px 8px 0 8px;
+          padding: 12px 8px 0 8px;
 
           @include media("tablet") {
             border-bottom: 0;
@@ -175,6 +220,13 @@
 
           &:last-child {
             border-bottom: 0;
+          }
+
+          &__delete {
+            position: relative;
+            top: 0px;
+            color: $red;
+            cursor: pointer;
           }
 
           &__image {
@@ -206,7 +258,7 @@
 
             &__title {
               font-weight: 600;
-              font-size: 14px;
+              font-size: 12px;
               line-height: 22px;
               color: $black;
               font-family: $poppins;
@@ -214,7 +266,7 @@
 
             &__author {
               font-size: 12px;
-              line-height: 22px;
+              line-height: 16px;
               color: $gray;
               font-family: $poppins;
             }
@@ -222,7 +274,7 @@
             &__status {
               font-weight: 600;
               font-size: 12px;
-              line-height: 22px;
+              line-height: 16px;
               font-family: $poppins;
 
               &--pending {
@@ -234,20 +286,17 @@
               }
             }
 
-            &__delete {
-              position: relative;
-              left: calc(100% - 14px);
-              top: -88px;
-              color: $red;
-            }
-
             &__actions {
+              position: relative;
+              left: 24px;
               display: flex;
               flex-direction: row;
               gap: 8px;
               justify-content: flex-end;
               font-size: 12px;
               line-height: 22px;
+              padding-top: 8px;
+              padding-bottom: 12px;
 
               font-family: $poppins;
 
@@ -258,6 +307,7 @@
                 box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
                   0 4px 6px -2px rgb(0 0 0 / 5%);
                 padding: 4px 12px;
+                cursor: pointer;
               }
 
               &__hide {

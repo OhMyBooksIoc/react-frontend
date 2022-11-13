@@ -9,14 +9,20 @@ import "./styles.scss";
 const isAuthenticated = !!(localStorage.getItem("isAuthenticated") || false);
 
 function MenuItems() {
+  const [userIsHover, setUserIsHover] = useState(false);
+  const [userMenuIsHover, setUserMenuIsHover] = useState(false);
+
+  useEffect(() => {
+    if (!userIsHover && userMenuIsHover) {
+      setUserIsHover(true);
+    }
+  }, [userMenuIsHover, userIsHover]);
+
   const logout = () => {
     if (isAuthenticated) {
       localStorage.clear();
-      if (window.location.href.indexOf("mi-cuenta") > -1) {
-        window.location.href = "/";
-        return;
-      }
-      window.reload();
+      window.location.href = "/";
+      return;
     }
   };
 
@@ -29,18 +35,58 @@ function MenuItems() {
         Qui som?
       </a>
       {!isAuthenticated ? (
-        <a href="/register" className="header__container__items__item">
-          Registre
-        </a>
-      ) : null}
-
-      <a
-        href="/login"
-        className="header__container__items__button"
-        onClick={logout}
-      >
-        {!isAuthenticated ? "Inicia sessió" : "Tancar sessión"}
-      </a>
+        <>
+          <a href="/register" className="header__container__items__item">
+            Registre
+          </a>
+          <a
+            href="/login"
+            className="header__container__items__button"
+            onClick={logout}
+          >
+            Inicia sessió
+          </a>
+        </>
+      ) : (
+        <>
+          <a
+            href="/my-account"
+            onMouseEnter={() => setUserIsHover(true)}
+            onMouseLeave={() => setTimeout(() => setUserIsHover(false), 200)}
+          >
+            <div className="header__container__items__profile-pic" />
+          </a>
+          {userIsHover ? (
+            <div
+              id="prova"
+              className="header__container__items__profile-options"
+              onMouseEnter={() => {
+                setUserIsHover(true);
+                setUserMenuIsHover(true);
+              }}
+              onMouseLeave={() => {
+                setUserMenuIsHover(false);
+                setUserIsHover(false);
+              }}
+            >
+              <div className="header__container__items__profile-options__title">
+                Hola Lore
+              </div>
+              <div className="header__container__items__profile-options__links">
+                <a
+                  href="/my-account"
+                  className="header__container__items__profile-options__links__link"
+                >
+                  Compte
+                </a>
+                <button className="header__container__items__profile-options__links__link__logout" onClick={() => logout()}>
+                  Tancar Sessió
+                </button>
+              </div>
+            </div>
+          ) : null}
+        </>
+      )}
     </div>
   );
 }
