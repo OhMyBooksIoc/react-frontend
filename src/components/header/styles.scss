@@ -2,6 +2,10 @@
 
 $header-height: 56px;
 
+.header-left {
+  display: flex;
+}
+
 .header {
   position: relative;
   display: flex;
@@ -19,12 +23,7 @@ $header-height: 56px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-items: stretch;
-
-    @include media("tablet") {
-      justify-content: space-between;
-      align-items: center;
-    }
+    justify-content: space-between;
 
     &__logo {
       display: flex;
@@ -113,6 +112,7 @@ $header-height: 56px;
         border-radius: 7px;
         box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
           rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+          z-index: 1;
 
         &:after {
           content: "";
