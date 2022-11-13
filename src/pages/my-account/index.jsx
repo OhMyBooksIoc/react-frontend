@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
@@ -7,11 +8,34 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
+import DeleteAccountModal from "../../modals/delete-account";
+import DeleteBookModal from "../../modals/delete-book";
+
 import "./styles.scss";
 
 function MyAccountPage() {
+  const [deleteUserIsOpen, setDeleteUserIsOpen] = useState(false);
+  const [addBookIsOpen, setAddBookIsOpen] = useState(false);
+  const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
+  const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
+
+  const closeModal = () =>
+    addBookIsOpen ? setAddBookIsOpen(false) : setModifyDataIsOpen(false);
+
   return (
     <div className="my-account">
+      <DeleteAccountModal
+        isOpen={deleteUserIsOpen}
+        onRequestClose={() => setDeleteUserIsOpen(false)}
+        closeTimeoutMS={200}
+      ></DeleteAccountModal>
+
+      <DeleteBookModal
+       isOpen={deleteBookIsOpen}
+       onRequestClose={() => setDeleteBookIsOpen(false)}
+       closeTimeoutMS={200}
+     ></DeleteBookModal>
+
       <div className="my-account__header">
         <div className="my-account__header__profile-pic"></div>
       </div>
@@ -22,7 +46,10 @@ function MyAccountPage() {
             <div className="my-account__content__books__head__title">
               Col·lecció
             </div>
-            <div className="my-account__content__books__head__add-book">
+            <div
+              className="my-account__content__books__head__add-book"
+              onClick={() => setAddBookIsOpen(true)}
+            >
               Afegir llibre
             </div>
           </div>
@@ -56,11 +83,10 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
+                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+              </div>
             </div>
             <div className="my-account__content__books__list__book">
-            
               <img
                 className="my-account__content__books__list__book__image"
                 src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
@@ -84,11 +110,10 @@ function MyAccountPage() {
                     <FontAwesomeIcon icon={faClock} />
                   </button>
                 </div>
-                
               </div>
               <div className="my-account__content__books__list__book__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
+                <FontAwesomeIcon icon={faTrash}  onClick={() => setDeleteBookIsOpen(true)} />
+              </div>
             </div>
 
             <div className="my-account__content__books__list__book">
@@ -117,8 +142,8 @@ function MyAccountPage() {
                 </div>
               </div>
               <div className="my-account__content__books__list__book__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
+                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+              </div>
             </div>
           </div>
           <div className="my-account__content__books__subtitle">
@@ -149,11 +174,10 @@ function MyAccountPage() {
                     <FontAwesomeIcon icon={faCheck} />
                   </button>
                 </div>
-                
               </div>
               <div className="my-account__content__books__list__book__delete">
-                  <FontAwesomeIcon icon={faTrash} />
-                </div>
+                <FontAwesomeIcon icon={faTrash} onClick={() => setDeleteBookIsOpen(true)}/>
+              </div>
             </div>
           </div>
         </div>
@@ -163,7 +187,10 @@ function MyAccountPage() {
             <div className="my-account__content__personal-information__head__title">
               Dades personals
             </div>
-            <div className="my-account__content__personal-information__head__edit">
+            <div
+              className="my-account__content__personal-information__head__edit"
+              onClick={() => setModifyDataIsOpen(true)}
+            >
               Modificar
             </div>
           </div>
@@ -195,7 +222,10 @@ function MyAccountPage() {
           {/* <span className="my-account__content__personal-information__change-pwd">
             Canviar la contrasenya
           </span> */}
-          <span className="my-account__content__personal-information__delete-user">
+          <span
+            className="my-account__content__personal-information__delete-user"
+            onClick={() => setDeleteUserIsOpen(true)}
+          >
             Suprimeix el compte
           </span>
         </div>
