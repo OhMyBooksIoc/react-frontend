@@ -11,13 +11,13 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
-function ModifyAccountContent({ closeModal }) {
+function ModifyAccountContent({ userInfo, closeModal }) {
   const [error, setError] = useState(null);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
   });
@@ -56,6 +56,7 @@ function ModifyAccountContent({ closeModal }) {
             </label>
 
             <input
+              defaultValue={userInfo.name}
               className="modify-account__content__form__item__input"
               id="name"
               type="text"
@@ -72,34 +73,13 @@ function ModifyAccountContent({ closeModal }) {
           <div className="modify-account__content__form__item">
             <label
               className="modify-account__content__form__item__label"
-              htmlFor="lastname"
-            >
-              Cognom
-            </label>
-
-            <input
-              className="modify-account__content__form__item__input"
-              id="lastname"
-              type="text"
-              required
-              {...register("lastname", { required: true })}
-            />
-
-            {!!errors["lastname"] && (
-              <span className="modify-account__content__form__item__error">
-                Introdueix un cognom vàlid
-              </span>
-            )}
-          </div>
-          <div className="modify-account__content__form__item">
-            <label
-              className="modify-account__content__form__item__label"
               htmlFor="email"
             >
               Correu electrònic
             </label>
 
             <input
+              defaultValue={userInfo.email}
               className="modify-account__content__form__item__input"
               id="email"
               type="email"
@@ -122,11 +102,12 @@ function ModifyAccountContent({ closeModal }) {
             </label>
 
             <input
+              defaultValue={userInfo.picture || ''}
               className="modify-account__content__form__item__input"
               id="pic"
               type="text"
               required
-              {...register("pic", { required: true })}
+              {...register("pic")}
             />
 
             {!!errors["pic"] && (
@@ -135,7 +116,7 @@ function ModifyAccountContent({ closeModal }) {
               </span>
             )}
           </div>
-          <button className="modify-account__content__form__button">
+          <button type="submit" className="modify-account__content__form__button"  disabled={!isValid}>
             Desar
           </button>
         </form>
@@ -144,13 +125,13 @@ function ModifyAccountContent({ closeModal }) {
   );
 }
 
-function ModifyAccountModal({ onRequestClose, ...props }) {
+function ModifyAccountModal({ userInfo, onRequestClose, ...props }) {
   return (
     <OMBModal
       className="omb-modal modify-account"
       {...{ onRequestClose, ...props }}
     >
-      <ModifyAccountContent closeModal={onRequestClose} />
+      <ModifyAccountContent userInfo={userInfo} closeModal={onRequestClose} />
     </OMBModal>
   );
 }
