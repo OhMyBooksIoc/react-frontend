@@ -40,9 +40,9 @@ function LoginPage() {
         return;
       }
   
-      const { user } = await response.json();
+      const { token } = await response.json();
   
-      localStorage.setItem("token", JSON.stringify(user));
+      localStorage.setItem("token", JSON.stringify(token));
       localStorage.setItem("isAuthenticated", true);
       window.location.href = "/my-account";
     } catch(err) {
