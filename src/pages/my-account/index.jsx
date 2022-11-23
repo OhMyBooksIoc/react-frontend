@@ -18,6 +18,12 @@ import Loader from "../../components/loader";
 
 import "./styles.scss";
 
+const DEFAULT_PROFILE_PIC =
+  "https://i.pinimg.com/736x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg";
+
+const username = localStorage.getItem("username") || "";
+const token = localStorage.getItem("token") || "";
+
 function MyAccountPage() {
   const [deleteUserIsOpen, setDeleteUserIsOpen] = useState(false);
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
@@ -28,18 +34,14 @@ function MyAccountPage() {
   const [userInfo, setUserInfo] = useState(null);
 
   const getProfileData = async () => {
-
-    const username = localStorage.getItem("username") || "";
-    const token = localStorage.getItem("token") || "";
-
     const requestOptions = {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${token}` },
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     try {
       const response = await fetch(
-        `http://localhost:8080/user/id/2/`,
+        `https://ohmybooks-back.herokuapp.com/user/userName/${username}/`,
         requestOptions
       );
 
@@ -48,7 +50,7 @@ function MyAccountPage() {
         return;
       }
 
-      const { email, name, picture, userName } = await response.json()
+      const { email, name, picture, userName } = await response.json();
 
       setUserInfo({ email, name, picture, username: userName });
       setPageIsLoading(false);
@@ -103,7 +105,14 @@ function MyAccountPage() {
       ></ModifyPasswordModal>
 
       <div className="my-account__header">
-        <div className="my-account__header__profile-pic"></div>
+        <div
+          className="my-account__header__profile-pic"
+          style={{
+            backgroundImage: `url("${
+              userInfo.picture ? userInfo.picture : DEFAULT_PROFILE_PIC
+            }")`,
+          }}
+        ></div>
       </div>
 
       <div className="my-account__content">
@@ -277,7 +286,7 @@ function MyAccountPage() {
               Nom i Cognoms:
             </span>
             <span className="my-account__content__personal-information__data__value">
-             {userInfo.name}
+              {userInfo.name}
             </span>
           </div>
           <div className="my-account__content__personal-information__data">

@@ -31,7 +31,7 @@ function LoginPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/auth/login",
+        "https://ohmybooks-back.herokuapp.com/auth/login",
         requestOptions
       );
   

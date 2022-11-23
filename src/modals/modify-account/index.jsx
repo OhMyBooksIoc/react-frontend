@@ -11,8 +11,16 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const DEFAULT_PROFILE_PIC =
+  "https://i.pinimg.com/736x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg";
+
+const token = localStorage.getItem("token") || "";
+
 function ModifyAccountContent({ userInfo, closeModal }) {
   const [error, setError] = useState(null);
+  const [actualImg, setActualImg] = useState(
+    userInfo.picture || DEFAULT_PROFILE_PIC
+  );
 
   const {
     register,
@@ -22,7 +30,40 @@ function ModifyAccountContent({ userInfo, closeModal }) {
     mode: "onTouched",
   });
 
-  const onSubmit = () => console.log("submit");
+  const onSubmit = async ({ name, email }) => {
+    setError(null);
+    console.log(name, email, actualImg);
+    const body = {
+      email,
+      name,
+      picture: actualImg,
+    };
+
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    };
+
+    try {
+      const response = await fetch(
+        "https://ohmybooks-back.herokuapp.com/user/update",
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError("No s'ha pogut desar els canvis. Intenta-ho més tard.");
+        return;
+      }
+
+      window.location.reload();
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
 
   return (
     <div className="modify-account">
@@ -96,27 +137,42 @@ function ModifyAccountContent({ userInfo, closeModal }) {
           <div className="modify-account__content__form__item">
             <label
               className="modify-account__content__form__item__label"
-              htmlFor="pic"
+              htmlFor="picture"
             >
               URL: Imatge de perfil
             </label>
 
+            <img
+              className="modify-account__content__form__item__pic"
+              src={actualImg}
+              onError={(event) => {
+                setActualImg(DEFAULT_PROFILE_PIC);
+                event.onerror = null;
+              }}
+            ></img>
+
             <input
-              defaultValue={userInfo.picture || ''}
+              defaultValue={userInfo.picture || ""}
               className="modify-account__content__form__item__input"
-              id="pic"
+              id="picture"
               type="text"
-              required
-              {...register("pic")}
+              {...register("picture", {
+                onChange: (e) =>
+                  setActualImg(e.target.value || DEFAULT_PROFILE_PIC),
+              })}
             />
 
-            {!!errors["pic"] && (
+            {!!errors["picture"] && (
               <span className="modify-account__content__form__item__error">
                 Introdueix una url vàlida
               </span>
             )}
           </div>
-          <button type="submit" className="modify-account__content__form__button"  disabled={!isValid}>
+          <button
+            type="submit"
+            className="modify-account__content__form__button"
+            disabled={!isValid}
+          >
             Desar
           </button>
         </form>
