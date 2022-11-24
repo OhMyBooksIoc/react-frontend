@@ -31,7 +31,7 @@ function LoginPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/auth/login",
+        "https://ohmybooks-back.herokuapp.com/auth/login",
         requestOptions
       );
   
@@ -40,9 +40,10 @@ function LoginPage() {
         return;
       }
   
-      const { token } = await response.json();
+      const { token, userName } = await response.json();
   
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("token", token);
+      localStorage.setItem("username",userName);
       localStorage.setItem("isAuthenticated", true);
       window.location.href = "/my-account";
     } catch(err) {

@@ -3,26 +3,67 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+
+import DEFAULT_PROFILE_PIC from "../../constants";
 
 import OMBModal from "../../components/modal";
 import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
-function ModifyAccountContent({ closeModal }) {
+
+
+const token = localStorage.getItem("token") || "";
+
+function ModifyAccountContent({ userInfo, closeModal }) {
   const [error, setError] = useState(null);
+  const [actualImg, setActualImg] = useState(
+    userInfo.picture || DEFAULT_PROFILE_PIC
+  );
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
   });
 
-  const onSubmit = () => console.log("submit");
+  const onSubmit = async ({ name, email }) => {
+    setError(null);
+    console.log(name, email, actualImg);
+    const body = {
+      email,
+      name,
+      picture: actualImg,
+    };
+
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    };
+
+    try {
+      const response = await fetch(
+        "https://ohmybooks-back.herokuapp.com/user/update",
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError("No s'ha pogut desar els canvis. Intenta-ho més tard.");
+        return;
+      }
+
+      window.location.reload();
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
 
   return (
     <div className="modify-account">
@@ -56,6 +97,7 @@ function ModifyAccountContent({ closeModal }) {
             </label>
 
             <input
+              defaultValue={userInfo.name}
               className="modify-account__content__form__item__input"
               id="name"
               type="text"
@@ -72,34 +114,13 @@ function ModifyAccountContent({ closeModal }) {
           <div className="modify-account__content__form__item">
             <label
               className="modify-account__content__form__item__label"
-              htmlFor="lastname"
-            >
-              Cognom
-            </label>
-
-            <input
-              className="modify-account__content__form__item__input"
-              id="lastname"
-              type="text"
-              required
-              {...register("lastname", { required: true })}
-            />
-
-            {!!errors["lastname"] && (
-              <span className="modify-account__content__form__item__error">
-                Introdueix un cognom vàlid
-              </span>
-            )}
-          </div>
-          <div className="modify-account__content__form__item">
-            <label
-              className="modify-account__content__form__item__label"
               htmlFor="email"
             >
               Correu electrònic
             </label>
 
             <input
+              defaultValue={userInfo.email}
               className="modify-account__content__form__item__input"
               id="email"
               type="email"
@@ -116,26 +137,42 @@ function ModifyAccountContent({ closeModal }) {
           <div className="modify-account__content__form__item">
             <label
               className="modify-account__content__form__item__label"
-              htmlFor="pic"
+              htmlFor="picture"
             >
               URL: Imatge de perfil
             </label>
 
+            <img
+              className="modify-account__content__form__item__pic"
+              src={actualImg}
+              onError={(event) => {
+                setActualImg(DEFAULT_PROFILE_PIC);
+                event.onerror = null;
+              }}
+            ></img>
+
             <input
+              defaultValue={userInfo.picture || ""}
               className="modify-account__content__form__item__input"
-              id="pic"
+              id="picture"
               type="text"
-              required
-              {...register("pic", { required: true })}
+              {...register("picture", {
+                onChange: (e) =>
+                  setActualImg(e.target.value || DEFAULT_PROFILE_PIC),
+              })}
             />
 
-            {!!errors["pic"] && (
+            {!!errors["picture"] && (
               <span className="modify-account__content__form__item__error">
                 Introdueix una url vàlida
               </span>
             )}
           </div>
-          <button className="modify-account__content__form__button">
+          <button
+            type="submit"
+            className="modify-account__content__form__button"
+            disabled={!isValid}
+          >
             Desar
           </button>
         </form>
@@ -144,13 +181,13 @@ function ModifyAccountContent({ closeModal }) {
   );
 }
 
-function ModifyAccountModal({ onRequestClose, ...props }) {
+function ModifyAccountModal({ userInfo, onRequestClose, ...props }) {
   return (
     <OMBModal
       className="omb-modal modify-account"
       {...{ onRequestClose, ...props }}
     >
-      <ModifyAccountContent closeModal={onRequestClose} />
+      <ModifyAccountContent userInfo={userInfo} closeModal={onRequestClose} />
     </OMBModal>
   );
 }

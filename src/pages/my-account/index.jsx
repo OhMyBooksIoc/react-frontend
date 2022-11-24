@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
@@ -8,13 +8,20 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
+import DEFAULT_PROFILE_PIC from "../../constants";
+
 import DeleteAccountModal from "../../modals/delete-account";
 import DeleteBookModal from "../../modals/delete-book";
 import AddBookModal from "../../modals/add-book";
 import ModifyAccountModal from "../../modals/modify-account";
 import ModifyPasswordModal from "../../modals/modify-password";
 
+import Loader from "../../components/loader";
+
 import "./styles.scss";
+
+const username = localStorage.getItem("username") || "";
+const token = localStorage.getItem("token") || "";
 
 function MyAccountPage() {
   const [deleteUserIsOpen, setDeleteUserIsOpen] = useState(false);
@@ -22,9 +29,46 @@ function MyAccountPage() {
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
   const [modifPasswordIsOpen, setModifyPasswordIsOpen] = useState(false);
+  const [pageIsLoading, setPageIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState(null);
 
-  const closeModal = () =>
-    addBookIsOpen ? setAddBookIsOpen(false) : setModifyDataIsOpen(false);
+  const getProfileData = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    try {
+      const response = await fetch(
+        `https://ohmybooks-back.herokuapp.com/user/userName/${username}/`,
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+        setPageIsLoading(false);
+        return;
+      }
+
+      const { email, name, picture, userName } = await response.json();
+
+      setUserInfo({ email, name, picture, username: userName });
+      setPageIsLoading(false);
+    } catch (err) {
+      console.error("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
+  if (pageIsLoading) {
+    return (
+      <div className="my-account">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="my-account">
@@ -47,19 +91,27 @@ function MyAccountPage() {
       ></AddBookModal>
 
       <ModifyAccountModal
+        userInfo={userInfo}
         isOpen={modifyDataIsOpen}
         onRequestClose={() => setModifyDataIsOpen(false)}
         closeTimeoutMS={200}
       ></ModifyAccountModal>
 
       <ModifyPasswordModal
-       isOpen={modifPasswordIsOpen}
-       onRequestClose={() => setModifyPasswordIsOpen(false)}
-       closeTimeoutMS={200}
-     ></ModifyPasswordModal>
+        isOpen={modifPasswordIsOpen}
+        onRequestClose={() => setModifyPasswordIsOpen(false)}
+        closeTimeoutMS={200}
+      ></ModifyPasswordModal>
 
       <div className="my-account__header">
-        <div className="my-account__header__profile-pic"></div>
+        <div
+          className="my-account__header__profile-pic"
+          style={{
+            backgroundImage: `url("${
+              userInfo.picture ? userInfo.picture : DEFAULT_PROFILE_PIC
+            }")`,
+          }}
+        ></div>
       </div>
 
       <div className="my-account__content">
@@ -233,7 +285,7 @@ function MyAccountPage() {
               Nom i Cognoms:
             </span>
             <span className="my-account__content__personal-information__data__value">
-              Lorem Ipsum
+              {userInfo.name}
             </span>
           </div>
           <div className="my-account__content__personal-information__data">
@@ -241,7 +293,7 @@ function MyAccountPage() {
               Usuari:
             </span>
             <span className="my-account__content__personal-information__data__value">
-              ohmybooks
+              {userInfo.username}
             </span>
           </div>
           <div className="my-account__content__personal-information__data">
@@ -249,13 +301,15 @@ function MyAccountPage() {
               Correu:
             </span>
             <span className="my-account__content__personal-information__data__value">
-              ohmybooks@gmail.com
+              {userInfo.email}
             </span>
           </div>
 
           <div className="my-account__content__personal-information__actions">
-            <span className="my-account__content__personal-information__actions__change-pwd"
-            onClick={() => setModifyPasswordIsOpen(true)}>
+            <span
+              className="my-account__content__personal-information__actions__change-pwd"
+              onClick={() => setModifyPasswordIsOpen(true)}
+            >
               Canviar clau
             </span>
             <span
