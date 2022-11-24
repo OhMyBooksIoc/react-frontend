@@ -2,15 +2,48 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import DEFAULT_PROFILE_PIC from "../../constants";
+
 import useWindowDimensions from "../../hooks/useWindowSize";
 
 import "./styles.scss";
 
 const isAuthenticated = !!(localStorage.getItem("isAuthenticated") || false);
+const username = localStorage.getItem("username") || "";
+const token = localStorage.getItem("token") || "";
 
 function ProfilePic({ isDesktop }) {
   const [userIsHover, setUserIsHover] = useState(false);
   const [userMenuIsHover, setUserMenuIsHover] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+
+  const getProfileData = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    try {
+      const response = await fetch(
+        `https://ohmybooks-back.herokuapp.com/user/userName/${username}/`,
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+        return;
+      }
+
+      const { email, name, picture, userName } = await response.json();
+
+      setUserInfo({ email, name, picture, username: userName });
+    } catch (err) {
+      console.error("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
+  useEffect(() => {
+    getProfileData();
+  }, []);
 
   useEffect(() => {
     if (!userIsHover && userMenuIsHover) {
@@ -28,44 +61,57 @@ function ProfilePic({ isDesktop }) {
 
   return (
     <>
-      <a
-        href={isDesktop ? "/my-account" : null}
-        onMouseEnter={() => setUserIsHover(true)}
-        onMouseLeave={() => setTimeout(() => setUserIsHover(false), 200)}
-      >
-        <div className="header__container__items__profile-pic" />
-      </a>
-      {userIsHover ? (
-        <div
-          id="prova"
-          className="header__container__items__profile-options"
-          onMouseEnter={() => {
-            setUserIsHover(true);
-            setUserMenuIsHover(true);
-          }}
-          onMouseLeave={() => {
-            setUserMenuIsHover(false);
-            setUserIsHover(false);
-          }}
-        >
-          <div className="header__container__items__profile-options__title">
-            Hola Lore
-          </div>
-          <div className="header__container__items__profile-options__links">
-            <a
-              href="/my-account"
-              className="header__container__items__profile-options__links__link"
+      {userInfo ? (
+        <>
+          <a
+            href={isDesktop ? "/my-account" : null}
+            onMouseEnter={() => setUserIsHover(true)}
+            onMouseLeave={() => setTimeout(() => setUserIsHover(false), 200)}
+          >
+            <div
+              className="header__container__items__profile-pic"
+              style={{
+                backgroundImage: `url("${
+                  userInfo && userInfo.picture
+                    ? userInfo.picture
+                    : DEFAULT_PROFILE_PIC
+                }")`,
+              }}
+            />
+          </a>
+          {userIsHover ? (
+            <div
+              id="prova"
+              className="header__container__items__profile-options"
+              onMouseEnter={() => {
+                setUserIsHover(true);
+                setUserMenuIsHover(true);
+              }}
+              onMouseLeave={() => {
+                setUserMenuIsHover(false);
+                setUserIsHover(false);
+              }}
             >
-              Compte
-            </a>
-            <button
-              className="header__container__items__profile-options__links__link__logout"
-              onClick={() => logout()}
-            >
-              Tancar Sessió
-            </button>
-          </div>
-        </div>
+              <div className="header__container__items__profile-options__title">
+                Hola, {userInfo.name}
+              </div>
+              <div className="header__container__items__profile-options__links">
+                <a
+                  href="/my-account"
+                  className="header__container__items__profile-options__links__link"
+                >
+                  Compte
+                </a>
+                <button
+                  className="header__container__items__profile-options__links__link__logout"
+                  onClick={() => logout()}
+                >
+                  Tancar Sessió
+                </button>
+              </div>
+            </div>
+          ) : null}
+        </>
       ) : null}
     </>
   );

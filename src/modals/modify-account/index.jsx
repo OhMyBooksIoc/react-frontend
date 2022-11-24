@@ -3,16 +3,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+
+import DEFAULT_PROFILE_PIC from "../../constants";
 
 import OMBModal from "../../components/modal";
 import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
-const DEFAULT_PROFILE_PIC =
-  "https://i.pinimg.com/736x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg";
+
 
 const token = localStorage.getItem("token") || "";
 

@@ -8,6 +8,8 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
+import DEFAULT_PROFILE_PIC from "../../constants";
+
 import DeleteAccountModal from "../../modals/delete-account";
 import DeleteBookModal from "../../modals/delete-book";
 import AddBookModal from "../../modals/add-book";
@@ -17,9 +19,6 @@ import ModifyPasswordModal from "../../modals/modify-password";
 import Loader from "../../components/loader";
 
 import "./styles.scss";
-
-const DEFAULT_PROFILE_PIC =
-  "https://i.pinimg.com/736x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg";
 
 const username = localStorage.getItem("username") || "";
 const token = localStorage.getItem("token") || "";
