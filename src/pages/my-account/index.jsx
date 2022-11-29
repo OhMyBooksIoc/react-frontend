@@ -40,7 +40,7 @@ function MyAccountPage() {
 
     try {
       const response = await fetch(
-        `https://ohmybooks-back.herokuapp.com/user/userName/${username}/`,
+        `http://localhost:8080/user/userName/${username}/`,
         requestOptions
       );
 

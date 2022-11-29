@@ -50,7 +50,7 @@ function ModifyAccountContent({ userInfo, closeModal }) {
 
     try {
       const response = await fetch(
-        "https://ohmybooks-back.herokuapp.com/user/update",
+        "http://localhost:8080/user/update",
         requestOptions
       );
 

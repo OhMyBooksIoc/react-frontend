@@ -34,7 +34,7 @@ function RegisterPage() {
 
     try {
       const response = await fetch(
-        "https://ohmybooks-back.herokuapp.com/auth/newUser",
+        "http://localhost:8080/auth/newUser",
         requestOptions
       );
   
