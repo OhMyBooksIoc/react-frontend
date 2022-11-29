@@ -14,7 +14,7 @@ function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onTouched",
   });
@@ -114,16 +114,10 @@ function LoginPage() {
                 </span>
               )}
             </div>
-            <button className="login__content__form__button"  disabled={!isValid}>
+            <button className="login__content__form__button">
               Iniciar Sessió
             </button>
-            <a
-              className="login__content__form__recovery-pwd"
-              href="/es/es/password-reset/"
-              tabIndex="3"
-            >
-              Has oblidat la teva contrasenya?
-            </a>
+
           </form>
           <div className="login__content__register">
             <span>Encara no tens compte?</span>

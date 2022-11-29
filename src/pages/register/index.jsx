@@ -14,7 +14,7 @@ function RegisterPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onTouched",
   });
@@ -191,10 +191,7 @@ function RegisterPage() {
               {...register("confirmPassword", { required: true })}
             />
           </div> */}
-            <button
-              className="register__content__form__button"
-              disabled={!isValid}
-            >
+            <button className="register__content__form__button">
               Crear un compte
             </button>
           </form>

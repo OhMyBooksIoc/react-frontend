@@ -23,7 +23,7 @@ function ModifyAccountContent({ userInfo, closeModal }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onTouched",
   });
@@ -168,7 +168,6 @@ function ModifyAccountContent({ userInfo, closeModal }) {
           <button
             type="submit"
             className="modify-account__content__form__button"
-            disabled={!isValid}
           >
             Desar
           </button>

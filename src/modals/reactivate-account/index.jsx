@@ -11,10 +11,16 @@ import "./styles.scss";
 
 const token = localStorage.getItem("token") || "";
 
-function DeleteAccountContent({ closeModal }) {
+function ReactivateAccountContent() {
   const [error, setError] = useState(null);
 
-  const disableAccount = async () => {
+  const closeModal = () => {
+    localStorage.clear();
+    window.location.href = "/";
+    return;
+  };
+
+  const reactivateAccount = async () => {
     setError(null);
     const requestOptions = {
       method: "PUT",
@@ -35,8 +41,7 @@ function DeleteAccountContent({ closeModal }) {
         return;
       }
 
-      localStorage.clear();
-      window.location.href = "/";
+      window.location.reload();
       return;
     } catch (err) {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
@@ -44,51 +49,48 @@ function DeleteAccountContent({ closeModal }) {
   };
 
   return (
-    <div className="delete-account">
-      <div className="delete-account__header">
+    <div className="reactivate-account">
+      <div className="reactivate-account__header">
         <FontAwesomeIcon
           icon={faClose}
-          className="delete-account__header__close"
+          className="reactivate-account__header__close"
           onClick={() => closeModal()}
         />
       </div>
-      <div className="delete-account__content">
+      <div className="reactivate-account__content">
         {error ? <FormError message={error} /> : null}
-        <div className="delete-account__content__title">
-          Vols eliminar el teu comtpe?
+        <div className="reactivate-account__content__title">
+          Vols reactivar el teu comtpe?
         </div>
-        <div className="delete-account__content__text">
-          Si elimines el teu compte, perdras tots els teus llibres i tot el
-          contingut publicat.
+        <div className="reactivate-account__content__text">
+          Si reactives el teu compte, recuperaràs tots els teus llibres i tot el
+          contingut publicat serà visible.
         </div>
       </div>
-      <div className="delete-account__footer">
+      <div className="reactivate-account__footer">
         <button
-          className="delete-account__footer__button delete-account__footer__button--cancel"
+          className="reactivate-account__footer__button reactivate-account__footer__button--cancel"
           onClick={() => closeModal()}
         >
           Cancelar
         </button>
         <button
-          className="delete-account__footer__button delete-account__footer__button--delete"
-          onClick={() => disableAccount()}
+          className="reactivate-account__footer__button reactivate-account__footer__button--reactivate"
+          onClick={() => reactivateAccount()}
         >
-          Eliminar
+          reactivar
         </button>
       </div>
     </div>
   );
 }
 
-function DeleteAccountModal({ onRequestClose, ...props }) {
+function ReactivateAccountModal({ ...props }) {
   return (
-    <OMBModal
-      className="omb-modal delete-account"
-      {...{ onRequestClose, ...props }}
-    >
-      <DeleteAccountContent closeModal={onRequestClose} />
+    <OMBModal className="omb-modal reactivate-account" {...props}>
+      <ReactivateAccountContent />
     </OMBModal>
   );
 }
 
-export default DeleteAccountModal;
+export default ReactivateAccountModal;
