@@ -6,6 +6,8 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
+
 function RegisterPage() {
   const [error, setError] = useState(null);
 
@@ -34,20 +36,25 @@ function RegisterPage() {
 
     try {
       const response = await fetch(
-        "https://ohmybooks-back.herokuapp.com/auth/newUser",
+        "http://localhost:8080/auth/newUser",
         requestOptions
       );
-  
+
       if (response.status !== 201) {
         setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
         return;
       }
-  
+
       window.location.href = "/login";
     } catch (err) {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
     }
   };
+
+  if (isAuthenticated) {
+    window.location.href = "/my-account";
+    return;
+  }
 
   return (
     <div className="container">

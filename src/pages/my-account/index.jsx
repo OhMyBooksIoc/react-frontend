@@ -10,7 +10,8 @@ import {
 
 import DEFAULT_PROFILE_PIC from "../../constants";
 
-import DeleteAccountModal from "../../modals/delete-account";
+import ReactivateAccountModal from "../../modals/reactivate-account";
+import DisableAccountModal from "../../modals/disable-account";
 import DeleteBookModal from "../../modals/delete-book";
 import AddBookModal from "../../modals/add-book";
 import ModifyAccountModal from "../../modals/modify-account";
@@ -22,9 +23,10 @@ import "./styles.scss";
 
 const username = localStorage.getItem("username") || "";
 const token = localStorage.getItem("token") || "";
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
 
 function MyAccountPage() {
-  const [deleteUserIsOpen, setDeleteUserIsOpen] = useState(false);
+  const [disableUserIsOpen, setDisableUserIsOpen] = useState(false);
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
@@ -40,7 +42,7 @@ function MyAccountPage() {
 
     try {
       const response = await fetch(
-        `https://ohmybooks-back.herokuapp.com/user/userName/${username}/`,
+        `http://localhost:8080/user/userName/${username}/`,
         requestOptions
       );
 
@@ -49,9 +51,9 @@ function MyAccountPage() {
         return;
       }
 
-      const { email, name, picture, userName } = await response.json();
+      const { email, name, picture, userName, status } = await response.json();
 
-      setUserInfo({ email, name, picture, username: userName });
+      setUserInfo({ email, name, picture, username: userName, status });
       setPageIsLoading(false);
     } catch (err) {
       console.error("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
@@ -62,6 +64,11 @@ function MyAccountPage() {
     getProfileData();
   }, []);
 
+  if (!isAuthenticated) {
+    window.location.href = "/login";
+    return;
+  }
+
   if (pageIsLoading) {
     return (
       <div className="my-account">
@@ -70,13 +77,17 @@ function MyAccountPage() {
     );
   }
 
+  if (!userInfo.status) {
+    return <ReactivateAccountModal  isOpen={true}></ReactivateAccountModal>;
+  }
+
   return (
     <div className="my-account">
-      <DeleteAccountModal
-        isOpen={deleteUserIsOpen}
-        onRequestClose={() => setDeleteUserIsOpen(false)}
+      <DisableAccountModal
+        isOpen={disableUserIsOpen}
+        onRequestClose={() => setDisableUserIsOpen(false)}
         closeTimeoutMS={200}
-      ></DeleteAccountModal>
+      ></DisableAccountModal>
 
       <DeleteBookModal
         isOpen={deleteBookIsOpen}
@@ -314,9 +325,9 @@ function MyAccountPage() {
             </span>
             <span
               className="my-account__content__personal-information__actions__delete-user"
-              onClick={() => setDeleteUserIsOpen(true)}
+              onClick={() => setDisableUserIsOpen(true)}
             >
-              Eliminar compte
+              Desactivar compte
             </span>
           </div>
         </div>

@@ -12,8 +12,6 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
-
-
 const token = localStorage.getItem("token") || "";
 
 function ModifyAccountContent({ userInfo, closeModal }) {
@@ -25,14 +23,13 @@ function ModifyAccountContent({ userInfo, closeModal }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onTouched",
   });
 
   const onSubmit = async ({ name, email }) => {
     setError(null);
-    console.log(name, email, actualImg);
     const body = {
       email,
       name,
@@ -50,7 +47,7 @@ function ModifyAccountContent({ userInfo, closeModal }) {
 
     try {
       const response = await fetch(
-        "https://ohmybooks-back.herokuapp.com/user/update",
+        "http://localhost:8080/user/update",
         requestOptions
       );
 
@@ -171,7 +168,6 @@ function ModifyAccountContent({ userInfo, closeModal }) {
           <button
             type="submit"
             className="modify-account__content__form__button"
-            disabled={!isValid}
           >
             Desar
           </button>

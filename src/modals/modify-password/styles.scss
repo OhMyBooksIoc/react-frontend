@@ -91,20 +91,6 @@
         }
       }
 
-      &__recovery-pwd {
-        text-align: center;
-        margin-top: 16px;
-        color: $gray;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        font-family: $lora;
-
-        &:hover {
-          color: $black;
-        }
-      }
-
       &__button {
         margin-top: 16px;
         align-self: center;
@@ -126,52 +112,12 @@
           background: $yellow-dark;
           cursor: pointer;
         }
-      }
-    }
-  }
 
-  &__footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 16px;
-    padding: 8px 0;
-
-    &__button {
-      align-self: center;
-      background: #4264a3;
-      color: #fff;
-      text-decoration: none;
-      text-transform: uppercase;
-      width: max-content;
-      padding: 9px 14px;
-      font-size: 14px;
-      line-height: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
-        0 4px 6px -2px rgb(0 0 0 / 5%);
-
-        &:focus-visible {
-          outline: none;
-        }
-
-      &--cancel {
-        background: $gray;
-
-        &:hover {
-          background: $gray-dark;
-        }
-      }
-
-      &--delete {
-        background: $red;
-
-        &:hover {
-          background: $red-dark;
+        &:disabled {
+          background: $gray;
         }
       }
     }
   }
+
 }

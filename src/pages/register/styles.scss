@@ -96,20 +96,6 @@
         }
       }
 
-      &__recovery-pwd {
-        text-align: center;
-        margin-top: 16px;
-        color: $gray;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        font-family: $lora;
-
-        &:hover {
-          color: $black;
-        }
-      }
-
       &__button {
         margin-top: 16px;
         align-self: center;
@@ -130,6 +116,10 @@
         &:hover {
           background: $yellow-dark;
           cursor: pointer;
+        }
+
+        &:disabled {
+          background: $gray;
         }
       }
     }

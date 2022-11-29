@@ -6,6 +6,8 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
+
 function LoginPage() {
   const [error, setError] = useState(null);
 
@@ -18,6 +20,7 @@ function LoginPage() {
   });
 
   const onSubmit = async ({ userName, password }) => {
+    setError(null);
     const body = {
       userName,
       password,
@@ -31,7 +34,7 @@ function LoginPage() {
 
     try {
       const response = await fetch(
-        "https://ohmybooks-back.herokuapp.com/auth/login",
+        "http://localhost:8080/auth/login",
         requestOptions
       );
   
@@ -50,6 +53,11 @@ function LoginPage() {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
     }
   };
+
+  if (isAuthenticated) {
+    window.location.href = "/my-account";
+    return;
+  }
 
   return (
     <div className="container">
@@ -109,13 +117,7 @@ function LoginPage() {
             <button className="login__content__form__button">
               Iniciar Sessió
             </button>
-            <a
-              className="login__content__form__recovery-pwd"
-              href="/es/es/password-reset/"
-              tabIndex="3"
-            >
-              Has oblidat la teva contrasenya?
-            </a>
+
           </form>
           <div className="login__content__register">
             <span>Encara no tens compte?</span>
