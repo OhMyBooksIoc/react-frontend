@@ -14,7 +14,7 @@ function RegisterPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
   });
@@ -39,12 +39,12 @@ function RegisterPage() {
         "http://localhost:8080/auth/newUser",
         requestOptions
       );
-  
+
       if (response.status !== 201) {
         setError("No s'ha pogut realitzar el registre. Intenta-ho més tard.");
         return;
       }
-  
+
       window.location.href = "/login";
     } catch (err) {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
@@ -55,7 +55,6 @@ function RegisterPage() {
     window.location.href = "/my-account";
     return;
   }
-
 
   return (
     <div className="container">
@@ -192,7 +191,10 @@ function RegisterPage() {
               {...register("confirmPassword", { required: true })}
             />
           </div> */}
-            <button className="register__content__form__button">
+            <button
+              className="register__content__form__button"
+              disabled={!isValid}
+            >
               Crear un compte
             </button>
           </form>

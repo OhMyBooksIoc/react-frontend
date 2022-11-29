@@ -49,14 +49,16 @@ const statics = [
   },
 ];
 
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
+
 function HomePage() {
   return (
     <div className="home">
       <div className="home__container">
         <Hero>
-          <a href="/register" className="home__container__head__button">
+          {  !isAuthenticated ? <a href="/register" className="home__container__head__button">
             Registra’t
-          </a>
+          </a> : <div className="home__container__head__no-auth" /> }
         </Hero>
 
         <div className="home__container__head">

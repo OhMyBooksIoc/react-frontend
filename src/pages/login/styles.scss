@@ -136,6 +136,10 @@
           &:active {
             background: $yellow;
           }
+
+          &:disabled {
+            background: $gray;
+          }
       }
     }
 

@@ -11,18 +11,53 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const token = localStorage.getItem("token") || "";
+
 function ModifyPasswordContent({ closeModal }) {
   const [error, setError] = useState(null);
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "onTouched",
   });
 
-  const onSubmit = () => console.log("submit");
+  const onSubmit = async ({ oldPassword, newPassword }) => {
+    setError(null);
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ oldPassword, newPassword }),
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/user/updatePass",
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError(
+          response.status === 400
+            ? "La contrasenya antiga no coincideix."
+            : "No s'ha pogut modificar la contrasenya. Intenta-ho més tard."
+        );
+        return;
+      }
+
+      localStorage.clear();
+      window.location.href = "/";
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
 
   return (
     <div className="modify-account">
@@ -100,16 +135,26 @@ function ModifyPasswordContent({ closeModal }) {
               id="repeat-password"
               type="password"
               required
-              {...register("confirmPassword", { required: true })}
+              {...register("confirmPassword", {
+                required: true,
+                validate: (val) => {
+                  if (watch("newPassword") != val) {
+                    return "a";
+                  }
+                },
+              })}
             />
 
             {!!errors["confirmPassword"] && (
               <span className="modify-password__content__form__item__error">
-                Introdueix una contrasenya vàlida
+                Les contrasenyes no coincideixen
               </span>
             )}
           </div>
-          <button className="modify-password__content__form__button">
+          <button
+            type="submit"
+            className="modify-password__content__form__button"
+          >
             Desar
           </button>
         </form>

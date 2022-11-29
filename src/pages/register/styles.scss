@@ -131,6 +131,10 @@
           background: $yellow-dark;
           cursor: pointer;
         }
+
+        &:disabled {
+          background: $gray;
+        }
       }
     }
 

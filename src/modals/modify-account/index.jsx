@@ -12,8 +12,6 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
-
-
 const token = localStorage.getItem("token") || "";
 
 function ModifyAccountContent({ userInfo, closeModal }) {
@@ -32,7 +30,6 @@ function ModifyAccountContent({ userInfo, closeModal }) {
 
   const onSubmit = async ({ name, email }) => {
     setError(null);
-    console.log(name, email, actualImg);
     const body = {
       email,
       name,

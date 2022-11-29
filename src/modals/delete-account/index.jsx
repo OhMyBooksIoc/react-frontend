@@ -15,6 +15,7 @@ function DeleteAccountContent({ closeModal }) {
   const [error, setError] = useState(null);
 
   const disableAccount = async () => {
+    setError(null);
     const requestOptions = {
       method: "PUT",
       headers: {

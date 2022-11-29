@@ -14,12 +14,13 @@ function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onTouched",
   });
 
   const onSubmit = async ({ userName, password }) => {
+    setError(null);
     const body = {
       userName,
       password,
@@ -113,7 +114,7 @@ function LoginPage() {
                 </span>
               )}
             </div>
-            <button className="login__content__form__button">
+            <button className="login__content__form__button"  disabled={!isValid}>
               Iniciar Sessió
             </button>
             <a
