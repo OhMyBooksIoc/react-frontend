@@ -6,6 +6,8 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
+
 function LoginPage() {
   const [error, setError] = useState(null);
 
@@ -50,6 +52,11 @@ function LoginPage() {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
     }
   };
+
+  if (isAuthenticated) {
+    window.location.href = "/my-account";
+    return;
+  }
 
   return (
     <div className="container">

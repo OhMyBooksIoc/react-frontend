@@ -22,6 +22,7 @@ import "./styles.scss";
 
 const username = localStorage.getItem("username") || "";
 const token = localStorage.getItem("token") || "";
+const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
 
 function MyAccountPage() {
   const [deleteUserIsOpen, setDeleteUserIsOpen] = useState(false);
@@ -61,6 +62,12 @@ function MyAccountPage() {
   useEffect(() => {
     getProfileData();
   }, []);
+
+  if (!isAuthenticated) {
+    window.location.href = "/login";
+    return;
+  }
+
 
   if (pageIsLoading) {
     return (
