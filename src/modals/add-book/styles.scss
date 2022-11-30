@@ -2,12 +2,14 @@
 
 .omb-modal.add-book {
   padding: 32px;
-  height: min-content;
+  height: 550px;
+  overflow: auto;
   width: auto;
   margin: auto 16px;
 
   @include media("tablet") {
     width: 400px;
+    height: 80%;
   }
 
 }

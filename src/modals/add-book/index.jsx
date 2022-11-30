@@ -11,6 +11,8 @@ import FormError from "../../components/form-error";
 
 import "./styles.scss";
 
+const token = localStorage.getItem("token") || "";
+
 function AddBookContent({ closeModal }) {
 
   const [error, setError] = useState(null);
@@ -23,7 +25,38 @@ function AddBookContent({ closeModal }) {
     mode: "onTouched",
   });
 
-  const onSubmit = () => console.log('submit');
+  const onSubmit = async (newBook) => {
+    setError(null);
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(newBook),
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/book/add",
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError(
+          response.status === 400
+            ? "Ja hi ha un llibre amb aquest nom i autor."
+            : "No s'ha pogut afegir el llibre. Intenta-ho més tard."
+        );
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
 
   return (
     <div className="add-book">
@@ -57,10 +90,10 @@ function AddBookContent({ closeModal }) {
               id="title"
               type="text"
               required
-              {...register("title", { required: true })}
+              {...register("name", { required: true })}
             />
 
-            {!!errors["title"] && (
+            {!!errors["name"] && (
               <span className="add-book__content__form__item__error">
                 Introdueix un títol vàlid
               </span>
@@ -98,17 +131,33 @@ function AddBookContent({ closeModal }) {
 
             <input
               className="add-book__content__form__item__input"
-              id="gender"
+              id="genre"
               type="text"
               required
-              {...register("gender", { required: true })}
+              {...register("genre", { required: true })}
             />
 
-            {!!errors["gender"] && (
+            {!!errors["genre"] && (
               <span className="add-book__content__form__item__error">
                 Introdueix un gènere vàlid
               </span>
             )}
+          </div>
+          <div className="add-book__content__form__item">
+            <label
+              className="add-book__content__form__item__label"
+              htmlFor="gender"
+            >
+              Saga
+            </label>
+
+            <input
+              className="add-book__content__form__item__input"
+              id="saga"
+              type="text"
+              required
+              {...register("saga")}
+            />
           </div>
           <div className="add-book__content__form__item">
             <label
@@ -145,10 +194,10 @@ function AddBookContent({ closeModal }) {
               id="total-pages"
               type="number"
               required
-              {...register("totalPages", { required: true })}
+              {...register("pages", { required: true })}
             />
 
-            {!!errors["totalPages"] && (
+            {!!errors["pages"] && (
               <span className="add-book__content__form__item__error">
                 Introdueix una nombre de pàgines vàlid
               </span>
@@ -167,10 +216,10 @@ function AddBookContent({ closeModal }) {
               id="pic"
               type="text"
               required
-              {...register("pic", { required: true })}
+              {...register("cover", { required: true })}
             />
 
-            {!!errors["pic"] && (
+            {!!errors["cover"] && (
               <span className="add-book__content__form__item__error">
                 Introdueix una url vàlida
               </span>
