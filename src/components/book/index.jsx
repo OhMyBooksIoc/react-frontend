@@ -55,6 +55,36 @@ function BookCard({ actualBook }) {
     }
   };
 
+  const changeBookReadState = async () => {
+    setError(null);
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/read/${book.id}`,
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError(
+          "No s'ha pogut marcar com a pendent / llegit el llibre. Intenta-ho més tard."
+        );
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
   return (
     <>
       <DeleteBookModal
@@ -73,7 +103,7 @@ function BookCard({ actualBook }) {
           }}
         />
         <div className="book__content">
-          <span className="book__content__status book__content__status--pending">
+          <span className={`book__content__status book__content__status--${readd ? 'read' : 'pending'}`}>
             <FontAwesomeIcon icon={readd ? faCheck : faClock} />{" "}
             {readd ? "Llegit" : "Pendent"}
           </span>
@@ -91,7 +121,12 @@ function BookCard({ actualBook }) {
                 <FontAwesomeIcon icon={faEyeSlash} />
               )}
             </button>
-            <button className="book__content__actions__read">
+            <button
+              className={`book__content__actions__${
+                readd ? "pending" : "read"
+              }`}
+              onClick={() => changeBookReadState()}
+            >
               {readd ? (
                 <FontAwesomeIcon icon={faClock} />
               ) : (
