@@ -1,12 +1,52 @@
+import { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 import OMBModal from "../../components/modal";
+import FormError from "../../components/form-error";
+import Loader from "../../components/loader";
 
 import "./styles.scss";
 
-function DeleteBookContent({ closeModal }) {
+const token = localStorage.getItem("token") || "";
+
+function DeleteBookContent({ closeModal, bookId }) {
+  const [error, setError] = useState(null);
+  const [modalIsLoading, setModalIsLoading] = useState(false);
+
+  const deleteBookFromCollection = async (bookId) => {
+    setModalIsLoading(true);
+    setError(null);
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/deleteBook/${bookId}`,
+        requestOptions
+      );
+
+      if (response.status !== 204) {
+        setError("No s'ha pogut eliminar llibre. Intenta-ho més tard.");
+        setModalIsLoading(false);
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+      setModalIsLoading(false);
+    }
+  };
+
   return (
     <div className="delete-book">
       <div className="delete-book__header">
@@ -25,25 +65,35 @@ function DeleteBookContent({ closeModal }) {
           progrés.
         </div>
       </div>
-      <div className="delete-book__footer">
-        <button className="delete-book__footer__button delete-book__footer__button--cancel">
-          Cancelar
-        </button>
-        <button className="delete-book__footer__button delete-book__footer__button--delete">
-          Eliminar
-        </button>
-      </div>
+      {error ? <FormError message={error} /> : null}
+      {modalIsLoading ? <Loader /> : null}
+      {!modalIsLoading && !error ? (
+        <div className="delete-book__footer">
+          <button
+            className="delete-book__footer__button delete-book__footer__button--cancel"
+            onClick={() => closeModal()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="delete-book__footer__button delete-book__footer__button--delete"
+            onClick={() => deleteBookFromCollection(bookId)}
+          >
+            Eliminar
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-function DeleteBookModal({ onRequestClose, ...props }) {
+function DeleteBookModal({ onRequestClose, bookId, ...props }) {
   return (
     <OMBModal
       className="omb-modal delete-book"
       {...{ onRequestClose, ...props }}
     >
-      <DeleteBookContent closeModal={onRequestClose} />
+      <DeleteBookContent closeModal={onRequestClose} bookId={bookId} />
     </OMBModal>
   );
 }

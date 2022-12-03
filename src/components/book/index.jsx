@@ -91,6 +91,7 @@ function BookCard({ actualBook }) {
         isOpen={deleteBookIsOpen}
         onRequestClose={() => setDeleteBookIsOpen(false)}
         closeTimeoutMS={200}
+        bookId={book.id}
       ></DeleteBookModal>
 
       <div className="book">
