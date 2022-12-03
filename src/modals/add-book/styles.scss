@@ -1,10 +1,29 @@
 @import "../../styles.scss";
 
+.select-react {
+  font-family: 'Poppins';
+  font-size: 14px;
+
+  .css-13cymwt-control {
+    border: 1px solid #DEDEDE;
+    border-radius: 6px;
+    height: 38.5px;
+
+    &:hover {
+      border: 1px solid #DEDEDE;
+    }
+  }
+}
+
 .omb-modal.add-book {
   padding: 32px;
-  height: min-content;
+  min-height: 50%;
+  max-height: 80%;
+  overflow: auto;
   width: auto;
+  height: min-content;
   margin: auto 16px;
+  
 
   @include media("tablet") {
     width: 400px;
@@ -47,6 +66,25 @@
       font-size: 14px;
       line-height: 20px;
       color: $gray;
+
+      &__manual-add {
+        font-family: $poppins;
+        font-size: 12px;
+        line-height: 20px;
+        color: $gray;
+        margin-top: 16px;
+        text-align: center;
+
+        &__link {
+          text-decoration: underline;
+          color: $gray-dark;
+          cursor: pointer;
+
+          &:hover {
+            color: $gray;
+          }
+        }
+      }
     }
 
     &__form {
@@ -111,6 +149,10 @@
         &:hover {
           background: $yellow-dark;
           cursor: pointer;
+        }
+
+        &:disabled {
+          background: $gray;
         }
       }
     }

@@ -78,7 +78,7 @@ function MyAccountPage() {
   }
 
   if (!userInfo.status) {
-    return <ReactivateAccountModal  isOpen={true}></ReactivateAccountModal>;
+    return <ReactivateAccountModal isOpen={true}></ReactivateAccountModal>;
   }
 
   return (
@@ -141,142 +141,11 @@ function MyAccountPage() {
           <div className="my-account__content__books__subtitle">
             Llibres públics
           </div>
-          <div className="my-account__content__books__list">
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/images/cat/portadas-libros-big-2019101610.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--pending">
-                  <FontAwesomeIcon icon={faClock} /> Pendent
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Mi portada de libro
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Joseph Haskell
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__read">
-                    <FontAwesomeIcon icon={faCheck} />
-                  </button>
-                </div>
-              </div>
-              <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => setDeleteBookIsOpen(true)}
-                />
-              </div>
-            </div>
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> Llegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-              </div>
-              <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => setDeleteBookIsOpen(true)}
-                />
-              </div>
-            </div>
-
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://edit.org/photos/editor/json/2021/10/01/b/f/bfd9f795767e0520cf43d9b65524c13d_edit.org.jpg-376.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--read">
-                  <FontAwesomeIcon icon={faCheck} /> Llegit
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Nunca dejes de soñar
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Anna Serra
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__hide">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__pending">
-                    <FontAwesomeIcon icon={faClock} />
-                  </button>
-                </div>
-              </div>
-              <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => setDeleteBookIsOpen(true)}
-                />
-              </div>
-            </div>
-          </div>
+          Sense llibres
           <div className="my-account__content__books__subtitle">
             Llibres ocults
           </div>
-          <div className="my-account__content__books__list">
-            <div className="my-account__content__books__list__book">
-              <img
-                className="my-account__content__books__list__book__image"
-                src="https://descubierta.es/wp-content/uploads/2022/06/Cover.jpg"
-              />
-              <div className="my-account__content__books__list__book__content">
-                <span className="my-account__content__books__list__book__content__status my-account__content__books__list__book__content__status--pending">
-                  <FontAwesomeIcon icon={faClock} /> Pendent
-                </span>
-                <span className="my-account__content__books__list__book__content__title">
-                  Cada historia cuenta
-                </span>
-                <span className="my-account__content__books__list__book__content__author">
-                  Miquel Solius
-                </span>
-
-                <div className="my-account__content__books__list__book__content__actions">
-                  <button className="my-account__content__books__list__book__content__actions__visible">
-                    <FontAwesomeIcon icon={faEye} />
-                  </button>
-                  <button className="my-account__content__books__list__book__content__actions__read">
-                    <FontAwesomeIcon icon={faCheck} />
-                  </button>
-                </div>
-              </div>
-              <div className="my-account__content__books__list__book__delete">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => setDeleteBookIsOpen(true)}
-                />
-              </div>
-            </div>
-          </div>
+          Sense llibres
         </div>
 
         <div className="my-account__content__personal-information">
