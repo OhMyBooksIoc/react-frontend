@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import DEFAULT_PROFILE_PIC from "../../constants";
+import  { DEFAULT_PROFILE_PIC  } from "../../constants";
 
 import useWindowDimensions from "../../hooks/useWindowSize";
 

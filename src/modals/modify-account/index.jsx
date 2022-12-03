@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-import DEFAULT_PROFILE_PIC from "../../constants";
+import  { DEFAULT_PROFILE_PIC  } from "../../constants";
 
 import OMBModal from "../../components/modal";
 import FormError from "../../components/form-error";
