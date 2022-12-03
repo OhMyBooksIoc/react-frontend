@@ -44,7 +44,12 @@ function AddBookContent({ closeModal }) {
         return;
       }
       const books = await response.json();
-      setBoooks(books.map((book) => ({ value: book.id, label: book.name })));
+
+      if (books.length) {
+        setBoooks(books.map((book) => ({ value: book.id, label: book.name })));
+      } else {
+        setManualAddBook(true);
+      }
       setPageIsLoading(false);
     } catch (err) {
       setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
@@ -106,9 +111,33 @@ function AddBookContent({ closeModal }) {
     }
   };
 
-  const AssignBookToUser = (bookId) => {
+  const AssignBookToUser = async (bookId) => {
     if (!bookId) return;
-    console.log(bookId);
+    setError(null);
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/addBook/${bookId}`,
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+        setError("No s'ha pogut assignar el llibre. Intenta-ho més tard.");
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
     // window.location.reload();
   };
 
