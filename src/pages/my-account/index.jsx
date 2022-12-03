@@ -1,23 +1,15 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faEyeSlash,
-  faEye,
-  faCheck,
-  faClock,
-} from "@fortawesome/free-solid-svg-icons";
 
-import DEFAULT_PROFILE_PIC from "../../constants";
+import  { DEFAULT_PROFILE_PIC  } from "../../constants";
 
 import ReactivateAccountModal from "../../modals/reactivate-account";
 import DisableAccountModal from "../../modals/disable-account";
-import DeleteBookModal from "../../modals/delete-book";
 import AddBookModal from "../../modals/add-book";
 import ModifyAccountModal from "../../modals/modify-account";
 import ModifyPasswordModal from "../../modals/modify-password";
 
 import Loader from "../../components/loader";
+import BookCard from "../../components/book";
 
 import "./styles.scss";
 
@@ -28,11 +20,13 @@ const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
 function MyAccountPage() {
   const [disableUserIsOpen, setDisableUserIsOpen] = useState(false);
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
-  const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
+  
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
   const [modifPasswordIsOpen, setModifyPasswordIsOpen] = useState(false);
   const [pageIsLoading, setPageIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
+  const [publicBooks, setPublicBooks] = useState([]);
+  const [privateBooks, setPrivateBooks] = useState([]);
 
   const getProfileData = async () => {
     const requestOptions = {
@@ -60,8 +54,39 @@ function MyAccountPage() {
     }
   };
 
+  const getUserBooks = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/user/`,
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+        setPageIsLoading(false);
+        return;
+      }
+
+      const allBooks = await response.json();
+      setPublicBooks(allBooks.filter((book) => !book.hide));
+      setPrivateBooks(allBooks.filter((book) => book.hide));
+      setPageIsLoading(false);
+    } catch (err) {
+      console.error("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
+  const getMyAccountData = async () => {
+    await getProfileData();
+    await getUserBooks();
+  };
+
   useEffect(() => {
-    getProfileData();
+    getMyAccountData();
   }, []);
 
   if (!isAuthenticated) {
@@ -89,11 +114,7 @@ function MyAccountPage() {
         closeTimeoutMS={200}
       ></DisableAccountModal>
 
-      <DeleteBookModal
-        isOpen={deleteBookIsOpen}
-        onRequestClose={() => setDeleteBookIsOpen(false)}
-        closeTimeoutMS={200}
-      ></DeleteBookModal>
+      
 
       <AddBookModal
         isOpen={addBookIsOpen}
@@ -141,11 +162,29 @@ function MyAccountPage() {
           <div className="my-account__content__books__subtitle">
             Llibres públics
           </div>
-          Sense llibres
+          <div className="my-account__content__books__list">
+            {!publicBooks.length && (
+              <span className="my-account__content__books__list__empty">
+                Actualment no tens cap llibre públic.
+              </span>
+            )}
+            {publicBooks.map(book => (
+             <BookCard actualBook={book} key={book.book.id} />
+            ))}
+          </div>
           <div className="my-account__content__books__subtitle">
             Llibres ocults
           </div>
-          Sense llibres
+          <div className="my-account__content__books__list">
+            {!privateBooks.length && (
+              <span className="my-account__content__books__list__empty">
+                Actualment no tens cap llibre ocult.
+              </span>
+            )}
+             {privateBooks.map(book => (
+              <BookCard actualBook={book} key={book.book.id} />
+            ))}
+          </div>
         </div>
 
         <div className="my-account__content__personal-information">

@@ -12,6 +12,8 @@ import OMBModal from "../../components/modal";
 import FormError from "../../components/form-error";
 import Loader from "../../components/loader";
 
+import  { DEFAULT_BOOK_PIC } from "../../constants/index";
+
 import "./styles.scss";
 
 const token = localStorage.getItem("token") || "";
@@ -79,6 +81,8 @@ function AddBookContent({ closeModal }) {
 
   const AddNewBook = async (newBook) => {
     setError(null);
+
+    newBook.cover = newBook.cover || DEFAULT_BOOK_PIC;
     const requestOptions = {
       method: "POST",
       headers: {
@@ -254,7 +258,7 @@ function AddBookContent({ closeModal }) {
                     className="add-book__content__form__item__label"
                     htmlFor="year"
                   >
-                    Any
+                    Any publicació
                   </label>
 
                   <input
@@ -305,15 +309,8 @@ function AddBookContent({ closeModal }) {
                     className="add-book__content__form__item__input"
                     id="pic"
                     type="text"
-                    required
-                    {...register("cover", { required: true })}
+                    {...register("cover")}
                   />
-
-                  {!!errors["cover"] && (
-                    <span className="add-book__content__form__item__error">
-                      Introdueix una url vàlida
-                    </span>
-                  )}
                 </div>
               </>
             ) : (
