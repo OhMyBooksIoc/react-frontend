@@ -17,7 +17,7 @@ import "./styles.scss";
 
 const token = localStorage.getItem("token") || "";
 
-function BookCard({ actualBook }) {
+function BookCard({ actualBook, page }) {
   const { book, readd, hide } = actualBook;
 
   const [error, setError] = useState(null);
@@ -104,37 +104,47 @@ function BookCard({ actualBook }) {
           }}
         />
         <div className="book__content">
-          <span className={`book__content__status book__content__status--${readd ? 'read' : 'pending'}`}>
-            <FontAwesomeIcon icon={readd ? faCheck : faClock} />{" "}
-            {readd ? "Llegit" : "Pendent"}
-          </span>
+          {page === "my-account" ? (
+            <span
+              className={`book__content__status book__content__status--${
+                readd ? "read" : "pending"
+              }`}
+            >
+              <FontAwesomeIcon icon={readd ? faCheck : faClock} />{" "}
+              {readd ? "Llegit" : "Pendent"}
+            </span>
+          ) : null}
           <span className="book__content__title">{book.name}</span>
           <span className="book__content__author">{book.author}</span>
 
-          <div className="book__content__actions">
-            <button
-              className={`book__content__actions__${hide ? "visible" : "hide"}`}
-              onClick={() => changeBookVisibility()}
-            >
-              {hide ? (
-                <FontAwesomeIcon icon={faEye} />
-              ) : (
-                <FontAwesomeIcon icon={faEyeSlash} />
-              )}
-            </button>
-            <button
-              className={`book__content__actions__${
-                readd ? "pending" : "read"
-              }`}
-              onClick={() => changeBookReadState()}
-            >
-              {readd ? (
-                <FontAwesomeIcon icon={faClock} />
-              ) : (
-                <FontAwesomeIcon icon={faCheck} />
-              )}
-            </button>
-          </div>
+          {page === "my-account" ? (
+            <div className="book__content__actions">
+              <button
+                className={`book__content__actions__${
+                  hide ? "visible" : "hide"
+                }`}
+                onClick={() => changeBookVisibility()}
+              >
+                {hide ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}
+              </button>
+              <button
+                className={`book__content__actions__${
+                  readd ? "pending" : "read"
+                }`}
+                onClick={() => changeBookReadState()}
+              >
+                {readd ? (
+                  <FontAwesomeIcon icon={faClock} />
+                ) : (
+                  <FontAwesomeIcon icon={faCheck} />
+                )}
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className="book__delete">
           <FontAwesomeIcon
