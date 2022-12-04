@@ -43,30 +43,38 @@
   }
 
   &__content {
-    flex: 1;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
     padding: 60px 24px 40px 24px;
     gap: 12px;
+
+    @include media("mobile") {
+      justify-content: center;
+    }
 
     @include media("tablet") {
       flex-direction: row;
     }
 
-    @include media("desktop-lg") {
-      width: 1240px;
-      margin: auto;
-    }
+
 
     &__books {
-      flex: 1;
       display: flex;
       flex-direction: column;
       box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
       padding: 16px;
+      width: 100%;
+
+      @include media("mobile") {
+        width: 345px;
+      }
 
       @include media("tablet") {
         padding: 16px 32px;
+      }
+
+      @include media("desktop") {
+        width: 824px;
       }
 
       &__head {
@@ -89,21 +97,11 @@
         display: flex;
         flex-direction: column;
         margin: 12px 0;
-        // @include media("tablet") {
-        //   display: grid;
-        //   grid-template-columns: repeat(2, minmax(0, 1fr));
-        //   grid-gap: 16px;
-        // }
 
         @include media("desktop") {
-        
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
           grid-gap: 16px;
-        }
-
-        @include media("desktop-lg") {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         &__empty {
