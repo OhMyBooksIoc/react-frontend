@@ -7,6 +7,8 @@ import {
   faEye,
   faCheck,
   faClock,
+  faClose,
+  faRotate,
 } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteBookModal from "../../modals/delete-book";
@@ -120,6 +122,12 @@ function BookCard({ actualBook, page }) {
           {page === "my-account" ? (
             <div className="book__content__actions">
               <button
+                className="book__content__actions__trade"
+                onClick={() => alert("transfer book")}
+              >
+                <FontAwesomeIcon icon={faRotate} />
+              </button>
+              <button
                 className={`book__content__actions__${
                   hide ? "visible" : "hide"
                 }`}
@@ -148,8 +156,12 @@ function BookCard({ actualBook, page }) {
         </div>
         <div className="book__delete">
           <FontAwesomeIcon
-            icon={faTrash}
-            onClick={() => setDeleteBookIsOpen(true)}
+            icon={page === "my-account" ? faTrash : faClose}
+            onClick={() =>
+              page === "my-account"
+                ? setDeleteBookIsOpen(true)
+                : alert("delete trade")
+            }
           />
         </div>
       </div>

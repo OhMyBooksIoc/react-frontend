@@ -74,8 +74,8 @@ function MyAccountPage() {
       }
 
       const allBooks = await response.json();
-      setPublicBooks(allBooks.filter((book) => !book.hide));
-      setPrivateBooks(allBooks.filter((book) => book.hide));
+      setPublicBooks(allBooks.filter((book) => !book.hide && !book.trade));
+      setPrivateBooks(allBooks.filter((book) => book.hide && !book.trade));
       setPageIsLoading(false);
     } catch (err) {
       console.error("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
