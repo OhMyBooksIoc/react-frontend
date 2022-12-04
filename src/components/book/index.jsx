@@ -20,7 +20,7 @@ import "./styles.scss";
 const token = localStorage.getItem("token") || "";
 
 function BookCard({ actualBook, page }) {
-  const { book, readd, hide } = actualBook;
+  const { book, readd, hide, trade } = actualBook;
 
   const [error, setError] = useState(null);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
@@ -87,6 +87,36 @@ function BookCard({ actualBook, page }) {
     }
   };
 
+  const changeBookTradeState = async () => {
+    setError(null);
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/trade/${book.id}`,
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError(
+          "No s'ha pogut marcar com a intercanviable el llibre. Intenta-ho més tard."
+        );
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
   return (
     <>
       <DeleteBookModal
@@ -121,12 +151,14 @@ function BookCard({ actualBook, page }) {
 
           {page === "my-account" ? (
             <div className="book__content__actions">
-              <button
-                className="book__content__actions__trade"
-                onClick={() => alert("transfer book")}
-              >
-                <FontAwesomeIcon icon={faRotate} />
-              </button>
+              {!trade ? (
+                <button
+                  className="book__content__actions__trade"
+                  onClick={() => changeBookTradeState()}
+                >
+                  <FontAwesomeIcon icon={faRotate} />
+                </button>
+              ) : null}
               <button
                 className={`book__content__actions__${
                   hide ? "visible" : "hide"
