@@ -7,9 +7,12 @@ import {
   faEye,
   faCheck,
   faClock,
+  faClose,
+  faRotate,
 } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteBookModal from "../../modals/delete-book";
+import DeleteTradeBookModal from "../../modals/delete-trade-book";
 
 import { DEFAULT_BOOK_PIC } from "../../constants/index";
 
@@ -17,11 +20,12 @@ import "./styles.scss";
 
 const token = localStorage.getItem("token") || "";
 
-function BookCard({ actualBook }) {
-  const { book, readd, hide } = actualBook;
+function BookCard({ actualBook, page }) {
+  const { book, readd, hide, trade } = actualBook;
 
   const [error, setError] = useState(null);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
+  const [deleteTradeBookIsOpen, setDeleteTradeBookIsOpen] = useState(false);
 
   const [actualImg, setActualImg] = useState(book.cover || DEFAULT_BOOK_PIC);
 
@@ -85,6 +89,36 @@ function BookCard({ actualBook }) {
     }
   };
 
+  const changeBookTradeState = async () => {
+    setError(null);
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/userBook/trade/${book.id}`,
+        requestOptions
+      );
+
+      if (response.status !== 201) {
+        setError(
+          "No s'ha pogut marcar com a intercanviable el llibre. Intenta-ho més tard."
+        );
+        return;
+      }
+
+      window.location.reload();
+      return;
+    } catch (err) {
+      setError("No s'ha pogut connectar amb l'API. Intenta-ho més tard.");
+    }
+  };
+
   return (
     <>
       <DeleteBookModal
@@ -93,6 +127,12 @@ function BookCard({ actualBook }) {
         closeTimeoutMS={200}
         bookId={book.id}
       ></DeleteBookModal>
+      <DeleteTradeBookModal
+        isOpen={deleteTradeBookIsOpen}
+        onRequestClose={() => setDeleteTradeBookIsOpen(false)}
+        closeTimeoutMS={200}
+        bookId={book.id}
+      ></DeleteTradeBookModal>
 
       <div className="book">
         <img
@@ -104,42 +144,64 @@ function BookCard({ actualBook }) {
           }}
         />
         <div className="book__content">
-          <span className={`book__content__status book__content__status--${readd ? 'read' : 'pending'}`}>
-            <FontAwesomeIcon icon={readd ? faCheck : faClock} />{" "}
-            {readd ? "Llegit" : "Pendent"}
-          </span>
+          {page === "my-account" ? (
+            <span
+              className={`book__content__status book__content__status--${
+                readd ? "read" : "pending"
+              }`}
+            >
+              <FontAwesomeIcon icon={readd ? faCheck : faClock} />{" "}
+              {readd ? "Llegit" : "Pendent"}
+            </span>
+          ) : null}
           <span className="book__content__title">{book.name}</span>
           <span className="book__content__author">{book.author}</span>
 
-          <div className="book__content__actions">
-            <button
-              className={`book__content__actions__${hide ? "visible" : "hide"}`}
-              onClick={() => changeBookVisibility()}
-            >
-              {hide ? (
-                <FontAwesomeIcon icon={faEye} />
-              ) : (
-                <FontAwesomeIcon icon={faEyeSlash} />
-              )}
-            </button>
-            <button
-              className={`book__content__actions__${
-                readd ? "pending" : "read"
-              }`}
-              onClick={() => changeBookReadState()}
-            >
-              {readd ? (
-                <FontAwesomeIcon icon={faClock} />
-              ) : (
-                <FontAwesomeIcon icon={faCheck} />
-              )}
-            </button>
-          </div>
+          {page === "my-account" ? (
+            <div className="book__content__actions">
+              {!trade ? (
+                <button
+                  className="book__content__actions__trade"
+                  onClick={() => changeBookTradeState()}
+                >
+                  <FontAwesomeIcon icon={faRotate} />
+                </button>
+              ) : null}
+              <button
+                className={`book__content__actions__${
+                  hide ? "visible" : "hide"
+                }`}
+                onClick={() => changeBookVisibility()}
+              >
+                {hide ? (
+                  <FontAwesomeIcon icon={faEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                )}
+              </button>
+              <button
+                className={`book__content__actions__${
+                  readd ? "pending" : "read"
+                }`}
+                onClick={() => changeBookReadState()}
+              >
+                {readd ? (
+                  <FontAwesomeIcon icon={faClock} />
+                ) : (
+                  <FontAwesomeIcon icon={faCheck} />
+                )}
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className="book__delete">
           <FontAwesomeIcon
-            icon={faTrash}
-            onClick={() => setDeleteBookIsOpen(true)}
+            icon={page === "my-account" ? faTrash : faClose}
+            onClick={() =>
+              page === "my-account"
+                ? setDeleteBookIsOpen(true)
+                : setDeleteTradeBookIsOpen(true)
+            }
           />
         </div>
       </div>

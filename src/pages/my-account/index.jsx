@@ -187,7 +187,7 @@ function MyAccountPage() {
               </span>
             )}
             {publicBooks.map((book) => (
-              <BookCard actualBook={book} key={book.book.id} />
+              <BookCard actualBook={book} key={book.book.id} page="my-account" />
             ))}
           </div>
           <div className="my-account__content__books__subtitle">
@@ -200,7 +200,7 @@ function MyAccountPage() {
               </span>
             )}
             {privateBooks.map((book) => (
-              <BookCard actualBook={book} key={book.book.id} />
+              <BookCard actualBook={book} key={book.book.id} page="my-account" />
             ))}
           </div>
         </div>
