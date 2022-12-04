@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import  { DEFAULT_PROFILE_PIC  } from "../../constants";
+import { DEFAULT_PROFILE_PIC } from "../../constants";
 
 import ReactivateAccountModal from "../../modals/reactivate-account";
 import DisableAccountModal from "../../modals/disable-account";
@@ -20,7 +20,7 @@ const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
 function MyAccountPage() {
   const [disableUserIsOpen, setDisableUserIsOpen] = useState(false);
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
-  
+
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
   const [modifPasswordIsOpen, setModifyPasswordIsOpen] = useState(false);
   const [pageIsLoading, setPageIsLoading] = useState(true);
@@ -114,8 +114,6 @@ function MyAccountPage() {
         closeTimeoutMS={200}
       ></DisableAccountModal>
 
-      
-
       <AddBookModal
         isOpen={addBookIsOpen}
         onRequestClose={() => setAddBookIsOpen(false)}
@@ -168,8 +166,8 @@ function MyAccountPage() {
                 Actualment no tens cap llibre públic.
               </span>
             )}
-            {publicBooks.map(book => (
-             <BookCard actualBook={book} key={book.book.id} />
+            {publicBooks.map((book) => (
+              <BookCard actualBook={book} key={book.book.id} />
             ))}
           </div>
           <div className="my-account__content__books__subtitle">
@@ -181,72 +179,77 @@ function MyAccountPage() {
                 Actualment no tens cap llibre ocult.
               </span>
             )}
-             {privateBooks.map(book => (
+            {privateBooks.map((book) => (
               <BookCard actualBook={book} key={book.book.id} />
             ))}
           </div>
         </div>
 
-        <div className="my-account__content__personal-information">
-          <div className="my-account__content__personal-information__head">
-            <div className="my-account__content__personal-information__head__title">
-              Dades personals
+        <div className="personal-container">
+          <div className="my-account__content__personal-information">
+            <div className="my-account__content__personal-information__head">
+              <div className="my-account__content__personal-information__head__title">
+                Dades personals
+              </div>
+              <div
+                className="my-account__content__personal-information__head__edit"
+                onClick={() => setModifyDataIsOpen(true)}
+              >
+                Modificar
+              </div>
             </div>
-            <div
-              className="my-account__content__personal-information__head__edit"
-              onClick={() => setModifyDataIsOpen(true)}
-            >
-              Modificar
+            <div className="my-account__content__personal-information__data">
+              <span className="my-account__content__personal-information__data__title">
+                Nom i Cognoms:
+              </span>
+              <span className="my-account__content__personal-information__data__value">
+                {userInfo.name}
+              </span>
             </div>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Nom i Cognoms:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              {userInfo.name}
-            </span>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Usuari:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              {userInfo.username}
-            </span>
-          </div>
-          <div className="my-account__content__personal-information__data">
-            <span className="my-account__content__personal-information__data__title">
-              Correu:
-            </span>
-            <span className="my-account__content__personal-information__data__value">
-              {userInfo.email}
-            </span>
+            <div className="my-account__content__personal-information__data">
+              <span className="my-account__content__personal-information__data__title">
+                Usuari:
+              </span>
+              <span className="my-account__content__personal-information__data__value">
+                {userInfo.username}
+              </span>
+            </div>
+            <div className="my-account__content__personal-information__data">
+              <span className="my-account__content__personal-information__data__title">
+                Correu:
+              </span>
+              <span className="my-account__content__personal-information__data__value">
+                {userInfo.email}
+              </span>
+            </div>
+
+            <div className="my-account__content__personal-information__actions">
+              <span
+                className="my-account__content__personal-information__actions__change-pwd"
+                onClick={() => setModifyPasswordIsOpen(true)}
+              >
+                Canviar clau
+              </span>
+              <span
+                className="my-account__content__personal-information__actions__delete-user"
+                onClick={() => setDisableUserIsOpen(true)}
+              >
+                Desactivar compte
+              </span>
+            </div>
           </div>
 
-          <div className="my-account__content__personal-information__actions">
-            <span
-              className="my-account__content__personal-information__actions__change-pwd"
-              onClick={() => setModifyPasswordIsOpen(true)}
-            >
-              Canviar clau
-            </span>
-            <span
-              className="my-account__content__personal-information__actions__delete-user"
-              onClick={() => setDisableUserIsOpen(true)}
-            >
-              Desactivar compte
-            </span>
+          <div className="my-account__content__personal-stats">
+            <div className="my-account__content__personal-stats__head">
+              <div className="my-account__content__personal-stats__head__title">
+                Estadístiques personals
+              </div>
+            </div>
+            <div className="home__container__stats__list">
+            {statics.map(({title, value}) => <Stats key={title} {...{title, value}} />)}
+          </div>
           </div>
         </div>
-
-        {/* <div className="my-account__content__stats">
-          <div className="my-account__content__stats__head">
-            <div className="my-account__content__stats__head__title">
-              Estadístiques
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
