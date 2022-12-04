@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import  { DEFAULT_PROFILE_PIC  } from "../../constants";
+import { DEFAULT_PROFILE_PIC } from "../../constants";
 
 import useWindowDimensions from "../../hooks/useWindowSize";
 
@@ -96,6 +96,12 @@ function ProfilePic({ isDesktop }) {
                 Hola, {userInfo.name}
               </div>
               <div className="header__container__items__profile-options__links">
+              <a
+                  href="/trade-books"
+                  className="header__container__items__profile-options__links__link"
+                >
+                  Intercanvi
+                </a>
                 <a
                   href="/my-account"
                   className="header__container__items__profile-options__links__link"
@@ -136,7 +142,15 @@ function MenuItems({ isDesktop }) {
           </a>
         </>
       ) : (
-        <>{isDesktop ? <ProfilePic {...{ isDesktop }} /> : null}</>
+        <>
+          <a href="/trade-books" className="header__container__items__item">
+            Intercanvi
+          </a>
+          <a href="/my-account" className="header__container__items__item">
+            Compte
+          </a>
+          {isDesktop ? <ProfilePic {...{ isDesktop }} /> : null}
+        </>
       )}
     </div>
   );

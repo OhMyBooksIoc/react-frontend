@@ -12,6 +12,7 @@ import TermsOfUsePage from "./pages/terms-of-use";
 import PrivacyPolicyPage from "./pages/privacy-policy";
 import CookiesPage from "./pages/cookies";
 import AboutUsPage from "./pages/about-us";
+import TradeBookPage from "./pages/trade-books";
 
 import "./app.scss";
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/about-us",
     element: <AboutUsPage />
+  },
+  {
+    path: "/trade-books",
+    element: <TradeBookPage />
   }
 ]);
 
