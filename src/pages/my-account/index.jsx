@@ -10,6 +10,7 @@ import ModifyPasswordModal from "../../modals/modify-password";
 
 import Loader from "../../components/loader";
 import BookCard from "../../components/book";
+import Stats from "../../components/stats";
 
 import "./styles.scss";
 
@@ -27,6 +28,7 @@ function MyAccountPage() {
   const [userInfo, setUserInfo] = useState(null);
   const [publicBooks, setPublicBooks] = useState([]);
   const [privateBooks, setPrivateBooks] = useState([]);
+  const [cardStats, setCardStats] = useState([]);
 
   const getProfileData = async () => {
     const requestOptions = {
@@ -87,6 +89,24 @@ function MyAccountPage() {
 
   useEffect(() => {
     getMyAccountData();
+    setCardStats([
+      {
+        title: "Total llibres",
+        value: 0,
+      },
+      {
+        title: "Llibres llegits",
+        value: 0,
+      },
+      {
+        title: "Pàgines llegides",
+        value: 0,
+      },
+      {
+        title: "Llibres a canviar",
+        value: 0,
+      },
+    ]);
   }, []);
 
   if (!isAuthenticated) {
@@ -245,9 +265,11 @@ function MyAccountPage() {
                 Estadístiques personals
               </div>
             </div>
-            <div className="home__container__stats__list">
-            {statics.map(({title, value}) => <Stats key={title} {...{title, value}} />)}
-          </div>
+            <div className="my-account__content__personal-stats__list">
+              {cardStats.map(({ title, value }) => (
+                <Stats key={title} {...{ title, value }} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

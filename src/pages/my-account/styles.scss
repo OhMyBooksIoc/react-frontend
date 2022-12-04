@@ -62,6 +62,10 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+
+      @include media("tablet") {
+        width: 340px;
+      }
     }
 
     &__personal-information {
@@ -161,7 +165,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 8px;
+        padding-bottom: 16px;
 
         &__title {
           font-weight: 700;
@@ -174,13 +178,31 @@
 
       &__list {
         display: grid;
-        gap: 16px;
+        gap: 8px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        font-family: $lora;
+        font-family: $poppins;
+        font-size: 12px;
 
-        @include media("tablet") {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+        .stat {
+          display: flex;
+          flex-direction: column;
+          padding: 4px 8px;
+          border-radius: 14px;
+          color: $black;
+          text-align: center;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        
+          &__value {
+            font-weight: bold;
+            font-size: 28px;
+            color: $yellow;
+          }
+        
+          &__title {
+            font-size: 12px;
+          }
         }
+        
       }
     }
 
@@ -231,7 +253,7 @@
       &__list {
         display: flex;
         flex-direction: column;
-
+        margin: 12px 0;
         // @include media("tablet") {
         //   display: grid;
         //   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -239,6 +261,7 @@
         // }
 
         @include media("desktop") {
+        
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
           grid-gap: 16px;
