@@ -33,8 +33,10 @@ function DeleteTradeBookContent({ closeModal, bookId }) {
         requestOptions
       );
 
-      if (response.status !== 204) {
-        setError("No s'ha pogut eliminar d'intercanviables el llibre. Intenta-ho més tard.");
+      if (response.status !== 201) {
+        setError(
+          "No s'ha pogut eliminar d'intercanviables el llibre. Intenta-ho més tard."
+        );
         setModalIsLoading(false);
         return;
       }
@@ -62,8 +64,8 @@ function DeleteTradeBookContent({ closeModal, bookId }) {
         </div>
         <div className="delete-trade-book__content__text">
           Si elimines aquest llibre d'intercanviables, ja no serà visible pels
-          altres usuaris que busquin llibres per a intercanviar. Aquesta acció
-          no elimina el llibre.
+          altres usuaris. Aquesta acció no eliminarà el llibre ni el seu
+          progrés.
         </div>
       </div>
       {error ? <FormError message={error} /> : null}

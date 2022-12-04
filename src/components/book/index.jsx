@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteBookModal from "../../modals/delete-book";
+import DeleteTradeBookModal from "../../modals/delete-trade-book";
 
 import { DEFAULT_BOOK_PIC } from "../../constants/index";
 
@@ -24,6 +25,7 @@ function BookCard({ actualBook, page }) {
 
   const [error, setError] = useState(null);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
+  const [deleteTradeBookIsOpen, setDeleteTradeBookIsOpen] = useState(false);
 
   const [actualImg, setActualImg] = useState(book.cover || DEFAULT_BOOK_PIC);
 
@@ -125,6 +127,12 @@ function BookCard({ actualBook, page }) {
         closeTimeoutMS={200}
         bookId={book.id}
       ></DeleteBookModal>
+      <DeleteTradeBookModal
+        isOpen={deleteTradeBookIsOpen}
+        onRequestClose={() => setDeleteTradeBookIsOpen(false)}
+        closeTimeoutMS={200}
+        bookId={book.id}
+      ></DeleteTradeBookModal>
 
       <div className="book">
         <img
@@ -192,7 +200,7 @@ function BookCard({ actualBook, page }) {
             onClick={() =>
               page === "my-account"
                 ? setDeleteBookIsOpen(true)
-                : alert("delete trade")
+                : setDeleteTradeBookIsOpen(true)
             }
           />
         </div>
