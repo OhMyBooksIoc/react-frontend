@@ -43,7 +43,7 @@ function BookCard({ actualBook, page }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/hide/${book.id}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/hide/${book.id}`,
         requestOptions
       );
 
@@ -73,7 +73,7 @@ function BookCard({ actualBook, page }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/read/${book.id}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/read/${book.id}`,
         requestOptions
       );
 
@@ -103,7 +103,7 @@ function BookCard({ actualBook, page }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/trade/${book.id}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/trade/${book.id}`,
         requestOptions
       );
 

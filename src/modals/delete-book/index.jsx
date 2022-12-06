@@ -29,7 +29,7 @@ function DeleteBookContent({ closeModal, bookId }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/deleteBook/${bookId}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/deleteBook/${bookId}`,
         requestOptions
       );
 

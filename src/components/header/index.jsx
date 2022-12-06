@@ -25,7 +25,7 @@ function ProfilePic({ isDesktop }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/user/userName/${username}/`,
+        `${process.env.REACT_APP_BASE_URL}/user/userName/${username}/`,
         requestOptions
       );
 

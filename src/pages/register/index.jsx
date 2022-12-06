@@ -36,7 +36,7 @@ function RegisterPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/auth/newUser",
+        `${process.env.REACT_APP_BASE_URL}/auth/newUser`,
         requestOptions
       );
 

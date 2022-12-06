@@ -37,7 +37,7 @@ function MyAccountPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/user/userName/${username}/`,
+        `${process.env.REACT_APP_BASE_URL}/user/userName/${username}/`,
         requestOptions
       );
 
@@ -63,7 +63,7 @@ function MyAccountPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/user/`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/user/`,
         requestOptions
       );
 
@@ -98,7 +98,7 @@ function MyAccountPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/stats/private",
+        `${process.env.REACT_APP_BASE_URL}/stats/private`,
         requestOptions
       );
 

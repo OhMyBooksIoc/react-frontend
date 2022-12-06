@@ -36,7 +36,7 @@ function AddBookContent({ closeModal }) {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/book/list",
+        `${process.env.REACT_APP_BASE_URL}/book/list`,
         requestOptions
       );
 
@@ -94,7 +94,7 @@ function AddBookContent({ closeModal }) {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/book/add",
+        `${process.env.REACT_APP_BASE_URL}/book/add`,
         requestOptions
       );
 
@@ -128,7 +128,7 @@ function AddBookContent({ closeModal }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/addBook/${bookId}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/addBook/${bookId}`,
         requestOptions
       );
 

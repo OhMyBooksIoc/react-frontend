@@ -34,7 +34,7 @@ function LoginPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/auth/login",
+        `${process.env.REACT_APP_BASE_URL}/auth/login`,
         requestOptions
       );
   

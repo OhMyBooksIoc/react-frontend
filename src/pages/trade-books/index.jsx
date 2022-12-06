@@ -24,7 +24,7 @@ function TradeBooksPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/user/userName/${username}/`,
+        `${process.env.REACT_APP_BASE_URL}/user/userName/${username}/`,
         requestOptions
       );
 
@@ -50,7 +50,7 @@ function TradeBooksPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/user/`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/user/`,
         requestOptions
       );
 

@@ -38,7 +38,7 @@ function ModifyPasswordContent({ closeModal }) {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/user/updatePass",
+        `${process.env.REACT_APP_BASE_URL}/user/updatePass`,
         requestOptions
       );
 
