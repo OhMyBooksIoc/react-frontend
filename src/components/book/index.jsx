@@ -13,6 +13,7 @@ import {
 
 import DeleteBookModal from "../../modals/delete-book";
 import DeleteTradeBookModal from "../../modals/delete-trade-book";
+import InfoBookModal from "../../modals/info-book";
 
 import { DEFAULT_BOOK_PIC } from "../../constants/index";
 
@@ -26,6 +27,7 @@ function BookCard({ actualBook, page }) {
   const [error, setError] = useState(null);
   const [deleteBookIsOpen, setDeleteBookIsOpen] = useState(false);
   const [deleteTradeBookIsOpen, setDeleteTradeBookIsOpen] = useState(false);
+  const [infoBookIsOpen, setInfoBookIsOpen] = useState(false);
 
   const [actualImg, setActualImg] = useState(book.cover || DEFAULT_BOOK_PIC);
 
@@ -133,9 +135,16 @@ function BookCard({ actualBook, page }) {
         closeTimeoutMS={200}
         bookId={book.id}
       ></DeleteTradeBookModal>
+      <InfoBookModal
+        isOpen={infoBookIsOpen}
+        onRequestClose={() => setInfoBookIsOpen(false)}
+        closeTimeoutMS={200}
+        book={actualBook.book}
+      ></InfoBookModal>
 
       <div className="book">
         <img
+          onClick={() => setInfoBookIsOpen(true)}
           className="book__image"
           src={actualImg}
           onError={(event) => {
