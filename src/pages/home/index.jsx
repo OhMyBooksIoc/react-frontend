@@ -88,7 +88,7 @@ function HomePage() {
           value: stats.totalBooksReaded,
         },
         {
-          title: "Llibres canviats",
+          title: "Intercanviables",
           value: stats.totalBooksTraded,
         },
       ]);
