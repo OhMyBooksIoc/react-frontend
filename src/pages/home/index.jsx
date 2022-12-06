@@ -141,17 +141,20 @@ function HomePage() {
               {publicStats ? (
                 <>
                   {" "}
-                  <div className="home__container__stats__user-stats">
-                    <span>Usuari amb més llibres llegits: </span>
-                    <span className="home__container__stats__user-stats__value">
-                      🏆 {publicStats.userWithMoreReads}
-                    </span>
-                    <span>Usuari amb més págines llegides: </span>
-                    <span className="home__container__stats__user-stats__value">
-                      {" "}
-                      🏆 {publicStats.userWithMorePagesRead}
-                    </span>
-                  </div>
+                  {publicStats.userWithMoreReads !== "-" &&
+                  publicStats.userWithMorePagesRead !== "-" ? (
+                    <div className="home__container__stats__user-stats">
+                      <span>Usuari amb més llibres llegits: </span>
+                      <span className="home__container__stats__user-stats__value">
+                        🏆 {publicStats.userWithMoreReads}
+                      </span>
+                      <span>Usuari amb més págines llegides: </span>
+                      <span className="home__container__stats__user-stats__value">
+                        {" "}
+                        🏆 {publicStats.userWithMorePagesRead}
+                      </span>
+                    </div>
+                  ) : null}
                   <div className="home__container__stats__list">
                     {cardStats.map(({ title, value }) => (
                       <Stats key={title} {...{ title, value }} />
