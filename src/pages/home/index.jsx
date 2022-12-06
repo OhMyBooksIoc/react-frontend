@@ -62,7 +62,7 @@ function HomePage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/stats/public",
+        `${process.env.REACT_APP_BASE_URL}/stats/public`,
         requestOptions
       );
 

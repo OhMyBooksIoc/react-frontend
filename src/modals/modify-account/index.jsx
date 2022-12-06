@@ -47,7 +47,7 @@ function ModifyAccountContent({ userInfo, closeModal }) {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/user/update",
+        `${process.env.REACT_APP_BASE_URL}/user/update`,
         requestOptions
       );
 

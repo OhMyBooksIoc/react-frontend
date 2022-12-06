@@ -29,7 +29,7 @@ function DeleteTradeBookContent({ closeModal, bookId }) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/userBook/trade/${bookId}`,
+        `${process.env.REACT_APP_BASE_URL}/userBook/trade/${bookId}`,
         requestOptions
       );
 
