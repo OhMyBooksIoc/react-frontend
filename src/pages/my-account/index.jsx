@@ -21,7 +21,6 @@ const isAuthenticated = localStorage.getItem("isAuthenticated") || false;
 function MyAccountPage() {
   const [disableUserIsOpen, setDisableUserIsOpen] = useState(false);
   const [addBookIsOpen, setAddBookIsOpen] = useState(false);
-
   const [modifyDataIsOpen, setModifyDataIsOpen] = useState(false);
   const [modifPasswordIsOpen, setModifyPasswordIsOpen] = useState(false);
   const [pageIsLoading, setPageIsLoading] = useState(true);
@@ -85,28 +84,55 @@ function MyAccountPage() {
   const getMyAccountData = async () => {
     await getProfileData();
     await getUserBooks();
+    await getPrivateStats();
+  };
+
+  const getPrivateStats = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/stats/private",
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+        setPageIsLoading(false);
+        return;
+      }
+      const stats = await response.json();
+      setCardStats([
+        {
+          title: "Total llibres",
+          value: stats.totalBooksUser,
+        },
+        {
+          title: "Llibres llegits",
+          value: stats.totalBooksReadUser,
+        },
+        {
+          title: "Pàgines llegides",
+          value: stats.totalPagesReadUser,
+        },
+        {
+          title: "Intercanviables",
+          value: stats.totalBooksInTradeUser,
+        },
+      ]);
+      setPageIsLoading(false);
+    } catch (err) {
+      setPageIsLoading(false);
+    }
   };
 
   useEffect(() => {
     getMyAccountData();
-    setCardStats([
-      {
-        title: "Total llibres",
-        value: 0,
-      },
-      {
-        title: "Llibres llegits",
-        value: 0,
-      },
-      {
-        title: "Pàgines llegides",
-        value: 0,
-      },
-      {
-        title: "Llibres a canviar",
-        value: 0,
-      },
-    ]);
   }, []);
 
   if (!isAuthenticated) {
